@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using NewOmniVus
+@using NewOmniVus.Data
+@using NewOmniVus.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject SignInManager<IdentityUser> _signInManager;
+@inject UserManager<IdentityUser> _userManager;

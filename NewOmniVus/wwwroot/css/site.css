@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap");
+
+.small-container {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-omni {
+    text-decoration: none;
+    border: none;
+    background-color: #006de8;
+    color: white;
+    padding: 1.2rem 3rem 1.2rem 3rem;
+    font-family: "karla", "sans-serif";
+    font-weight: 700;
+}
+
+    .button-omni:hover {
+        background-color: #B7C3D6;
+    }
+
+#header-section {
+    background-color: transparent;
+    position: absolute;
+}
+
+    #header-section #brand-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 8.5rem;
+        background-color: white;
+        padding: 0 2.5rem 0 2.5rem;
+    }
+
+        #header-section #brand-div h1 {
+            font-family: "montserrat", "sans-serif";
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #002249;
+        }
+
+        #header-section #brand-div p {
+            font-family: "karla", "sans-serif";
+            font-size: 0.9rem;
+            color: #6C90B9;
+        }
+
+    #header-section #social-media-div {
+        height: 4rem;
+        width: 59rem;
+        border-bottom: 1px solid rgba(153, 194, 246, 0.3);
+        background-color: transparent;
+    }
+
+        #header-section #social-media-div a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+        }
+
+    #header-section #menu-div {
+        height: 3.5rem;
+        width: 59rem;
+        margin-top: 1rem;
+    }
+
+        #header-section #menu-div a {
+            margin-left: 1.5rem;
+            padding-bottom: 0.8rem;
+            text-decoration: none;
+        }
+
+        #header-section #menu-div button {
+            margin: 0 0 0 1.5rem;
+            padding: 0;
+            color: #f5faff;
+            border: none;
+            background-color: #006de8;
+        }
+
+            #header-section #menu-div button:hover {
+                background-color: #B7C3D6;
+            }
+
+            #header-section #menu-div button a {
+                color: white;
+                margin: 0;
+                padding: 0;
+            }
+
+#showcase-section {
+    padding-top: 150px;
+    background: #fefefe;
+    background: radial-gradient(circle, #fefefe 26%, #cbdffa 81%, #a9c7ec 100%);
+    width: 100%;
+}
+
+    #showcase-section #showcase-left p {
+        font-family: "karla", "sans-serif";
+        font-size: 1.5rem;
+        color: #69a1bb;
+    }
+
+    #showcase-section #showcase-left h2 {
+        font-family: "Roboto", sans-serif;
+        font-size: 5rem;
+    }
+
+    #showcase-section #showcase-left div {
+        margin-left: -1.8rem;
+    }
+
+        #showcase-section #showcase-left div img {
+            background: transparent;
+            margin-right: 1rem;
+        }
+
+        #showcase-section #showcase-left div p {
+            margin-right: 2rem;
+            color: #002249;
+            font-family: "karla", "sans-serif";
+            font-weight: 700;
+        }
+
+    #showcase-section #showcase-right img {
+        height: auto;
+        width: 100%;
+    }
+
+#about-section {
+    background-image: url("/images/turned-square.svg");
+    background-position: 1500px -250px;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    text-align: left;
+    padding-top: 2.5rem;
+}
+
+    #about-section #about-left {
+        margin-right: 5rem;
+    }
+
+    #about-section #about-right {
+        padding-top: 9rem;
+    }
+
+        #about-section #about-right :first-child :first-child {
+            color: #006de8;
+            width: 4rem;
+        }
+
+        #about-section #about-right :first-child img {
+            padding-bottom: 0.3rem;
+            padding-left: 1rem;
+        }
+
+        #about-section #about-right h3 {
+            font-family: "montserrat", "sans-serif";
+            font-size: 4rem;
+            padding-top: 1.5rem;
+            padding-bottom: 2rem;
+            margin: 0;
+        }
+
+        #about-section #about-right p:nth-of-type(1) {
+            color: #69a1bb;
+            width: 34.4rem;
+        }
+
+        #about-section #about-right #years-div {
+            padding-bottom: 1rem;
+        }
+
+            #about-section #about-right #years-div p:nth-of-type(1) {
+                font-size: 5rem;
+                color: #006de8;
+                width: 6.5rem;
+            }
+
+            #about-section #about-right #years-div p:nth-of-type(2) {
+                font-size: 1rem;
+                color: #002249;
+                width: 8.3rem;
+                padding: 1rem 0 1rem 0;
+            }
+
+        #about-section #about-right button {
+            margin-right: 1rem;
+        }
+
+#video-section {
+    background-color: #00152D;
+    padding-top: 10.125rem;
+    padding-bottom: 7.5rem;
+}
+
+    #video-section #video-left {
+        margin-right: 4rem;
+    }
+
+        #video-section #video-left :first-child :first-child {
+            color: #006de8;
+            width: 4rem;
+            font-size: 0.9rem;
+        }
+
+        #video-section #video-left :first-child div img {
+            padding-left: 1rem;
+        }
+
+        #video-section #video-left h2 {
+            font-family: "Roboto", sans-serif;
+            font-size: 3.75rem;
+            color: white;
+        }
+
+        #video-section #video-left p:nth-of-type(1) {
+            color: #A1BBD7;
+            font-family: "karla", "sans-serif";
+            font-size: 1.4rem;
+            width: 33.125rem;
+            padding-right: 0;
+            margin-right: 0;
+        }
+
+        #video-section #video-left p:nth-of-type(2) {
+            color: #C5D5E7;
+            font-family: "karla", "sans-serif";
+            font-size: 1rem;
+            padding-right: 0.7rem;
+            width: 33.125rem;
+        }
+
+        #video-section #video-left button {
+            margin-top: 3rem;
+        }
+
+    #video-section #video-right {
+        margin-right: -3.5rem;
+    }
+
+.log-section {
+    margin: 8.125rem 14.25rem;
+    background-color: #001222;
+    padding: 7.5rem 0;
+}
+
+    .log-section h2 {
+        color: white;
+        font-family: "Roboto", sans-serif;
+        font-size: 3.75rem;
+    }
+
+    .log-section p {
+        font-family: "karla", "sans-serif";
+        color: #C1D0DE;
+    }
+
+    .log-section input {
+        background-color: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        color: #c5d5e7;
+    }

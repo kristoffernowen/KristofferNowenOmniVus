@@ -1,0 +1,43 @@
+﻿
+<section id="header-section" class="container-fluid">
+    <div id="" class="container  container-fluid d-flex justify-content-between">
+        <div id="brand-div">
+            <h1>OmniVus.</h1>
+            <p>IT Service & Technology</p>
+
+        </div>
+        <div class="d-flex flex-column aling-items-center">
+            <div id="social-media-div" class="d-flex justify-content-end align-items-center">
+                @if(_signInManager.IsSignedIn(User))
+                {
+                    <div class="social">
+                        <a href="#">@User.Identity?.Name</a>
+                    </div>                    
+                }
+                else
+                {
+                    <a href="">Facebook</a>
+                    <a href="">YouTube</a>
+                    <a href="">Twitter</a>
+                    <a href="">Linkedin</a>
+                }
+            </div>
+            <div id="menu-div" class="d-flex justify-content-end align-items-end">
+                <a href="">Home</a>
+                <a href="">Services</a>
+                <a href="">Contact</a>
+                
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <button class="btn px-5 py-2"> <a  asp-controller="AuthenticationController1" asp-action="SignOut"  >Log Out</a></button>
+                }
+                else
+                {
+                    <button  class="btn px-5 py-2"><a asp-controller="AuthenticationController1" asp-action="SignIn">Log in</a></button>
+                }
+                
+                    
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,298 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+$karla: 'karla', 'sans-serif';
+$montserrat: 'montserrat', 'sans-serif';
+$roboto: 'Roboto', sans-serif;
+
+
+$blue: #006de8;
+$dark-blue: #00152D;
+$blue-text: #6C90B9;
+$main-menu-text: #4F79A9;
+$black: #002249;
+$black-2: #001222;
+$pale-white: #f5faff;
+$gray-1: #a0b6d0;
+$light-gray: #B7C3D6;
+$green-gray-text: #69a1bb;
+$light-blue-text: #C5D5E7;
+
+
+
+.small-container {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-omni {
+    text-decoration: none;
+    border: none;
+    background-color: $blue;
+    color: white;
+    padding: 1.2rem 3rem 1.2rem 3rem;
+    font-family: $karla;
+    font-weight: 700;
+
+    &:hover {
+        background-color: $light-gray;
+    }
+}
+
+#header-section {
+    background-color: transparent;
+    position: absolute;
+
+    #brand-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 8.5rem;
+        background-color: white;
+        padding: 0 2.5rem 0 2.5rem;
+
+        h1 {
+            font-family: $montserrat;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: $black;
+        }
+
+        p {
+            font-family: $karla;
+            font-size: 0.9rem;
+            color: $blue-text;
+        }
+    }
+
+    #social-media-div {
+        height: 4rem;
+        width: 59rem;
+        border-bottom: 1px solid rgba(153, 194, 246, 0.3);
+        background-color: transparent;
+
+        a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+        }
+    }
+
+    #menu-div {
+        height: 3.5rem;
+        width: 59rem;
+        margin-top: 1rem;
+
+        a {
+            margin-left: 1.5rem;
+            padding-bottom: 0.8rem;
+            text-decoration: none;
+        }
+
+        button {
+            margin: 0 0 0 1.5rem;
+            padding: 0;
+            color: $pale-white;
+            border: none;
+            background-color: $blue;
+
+            &:hover {
+                background-color: $light-gray;
+            }
+
+            a {
+                color: white;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+
+#showcase-section {
+    padding-top: 150px;
+    background: rgb(254,254,254);
+    background: radial-gradient(circle, rgba(254,254,254,1) 26%, rgba(203,223,250,1) 81%, rgba(169,199,236,1) 100%);
+    //  background: rgb(254,254,254);
+    // background: radial-gradient(circle, rgba(254,254,254,1) 25%, rgba(169,199,236,1) 100%);
+    width: 100%;
+
+    #showcase-left {
+        p {
+            font-family: $karla;
+            font-size: 1.5rem;
+            color: $green-gray-text;
+        }
+
+        h2 {
+            font-family: $roboto;
+            font-size: 5rem;
+        }
+
+        div {
+            margin-left: -1.8rem;
+
+            img {
+                background: transparent;
+                margin-right: 1rem;
+            }
+
+            p {
+                margin-right: 2rem;
+                color: $black;
+                font-family: $karla;
+                font-weight: 700;
+            }
+        }
+    }
+
+    #showcase-right {
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
+
+#about-section {
+    background-image: url("/images/turned-square.svg");
+    background-position: 1500px -250px;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    text-align: left;
+    padding-top: 2.5rem;
+
+
+    #about-left {
+        margin-right: 5rem;
+    }
+
+    #about-right {
+        padding-top: 9rem;
+
+        :first-child {
+            :first-child {
+                color: $blue;
+                width: 4rem;
+            }
+
+            img {
+                padding-bottom: 0.3rem;
+                padding-left: 1rem;
+            }
+        }
+
+        h3 {
+            font-family: $montserrat;
+            font-size: 4rem;
+            padding-top: 1.5rem;
+            padding-bottom: 2rem;
+            margin: 0;
+        }
+
+        p:nth-of-type(1) {
+            color: $green-gray-text;
+            width: 34.4rem;
+        }
+
+        #years-div {
+            padding-bottom: 1rem;
+
+            p:nth-of-type(1) {
+                font-size: 5rem;
+                color: $blue;
+                width: 6.5rem;
+            }
+
+            p:nth-of-type(2) {
+                font-size: 1rem;
+                color: $black;
+                width: 8.3rem;
+                padding: 1rem 0 1rem 0;
+            }
+        }
+
+        button {
+            margin-right: 1rem;
+        }
+    }
+}
+
+#video-section {
+    background-color: $dark-blue;
+    padding-top: 10.125rem;
+    padding-bottom: 7.5rem;
+
+    #video-left {
+        margin-right: 4rem;
+
+        :first-child {
+            :first-child {
+                color: $blue;
+                width: 4rem;
+                font-size: 0.9rem;
+            }
+
+            div {
+                img {
+                    padding-left: 1rem;
+                }
+            }
+        }
+
+        h2 {
+            font-family: $roboto;
+            font-size: 3.75rem;
+            color: white;
+        }
+
+        p:nth-of-type(1) {
+            color: #A1BBD7;
+            font-family: $karla;
+            font-size: 1.4rem;
+            width: 33.125rem;
+            padding-right: 0;
+            margin-right: 0;
+        }
+
+        p:nth-of-type(2) {
+            color: $light-blue-text;
+            font-family: $karla;
+            font-size: 1rem;
+            padding-right: 0.7rem;
+            width: 33.125rem;
+        }
+
+        button {
+            margin-top: 3rem;
+        }
+    }
+
+    #video-right {
+        margin-right: -3.5rem;
+    }
+}
+
+.log-section {
+    margin: 8.125rem 14.25rem;
+    background-color: $black-2;
+    padding: 7.5rem 0;
+
+    h2 {
+        color: white;
+        font-family: $roboto;
+        font-size: 3.75rem;
+    }
+
+    p {
+        font-family: $karla;
+        color: #C1D0DE;
+    }
+
+    input {
+        background-color: transparent;
+        border: 2px solid rgba(255,255,255, 0.20);
+    }
+}
