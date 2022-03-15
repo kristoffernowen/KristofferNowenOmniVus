@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
+    // x.SignIn.RequireConfirmedAccount = true;
     x.User.RequireUniqueEmail = true;
     x.Password.RequiredLength = 8;
     x.Password.RequireDigit = true;
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 builder.Services.ConfigureApplicationCookie(x =>
 {
     x.LoginPath = "/authentication/signin";
+    x.AccessDeniedPath = "/authentication/denied";
 });
 
 

@@ -90,6 +90,13 @@
                 padding: 0;
             }
 
+.sky-bg{
+    padding-top: 150px;
+    background: #fefefe;
+    background: radial-gradient(circle, #fefefe 26%, #cbdffa 81%, #a9c7ec 100%);
+    width: 100%;
+}
+
 #showcase-section {
     padding-top: 150px;
     background: #fefefe;
@@ -262,4 +269,10 @@
         background-color: transparent;
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
+    }
+
+    #denied-div {
+        background-image: url("/images/FatFrog.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
     }

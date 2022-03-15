@@ -23,17 +23,17 @@
                 }
             </div>
             <div id="menu-div" class="d-flex justify-content-end align-items-end">
-                <a href="">Home</a>
-                <a href="">Services</a>
-                <a href="">Contact</a>
+                <a asp-controller="Home"  asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <a asp-controller="Home" asp-action="Contact">Contact</a>
                 
                 @if (_signInManager.IsSignedIn(User))
                 {
-                    <button class="btn px-5 py-2"> <a  asp-controller="AuthenticationController1" asp-action="SignOut"  >Log Out</a></button>
+                    <button class="btn px-5 py-2"> <a  asp-controller="Authentication" asp-action="SignOut"  >Log Out</a></button>
                 }
                 else
                 {
-                    <button  class="btn px-5 py-2"><a asp-controller="AuthenticationController1" asp-action="SignIn">Log in</a></button>
+                    <button  class="btn px-5 py-2"><a asp-controller="Authentication" asp-action="SignIn">Log in</a></button>
                 }
                 
                     
