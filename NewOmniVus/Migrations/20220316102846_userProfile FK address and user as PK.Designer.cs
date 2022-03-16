@@ -12,8 +12,8 @@ using NewOmniVus.Data;
 namespace NewOmniVus.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220315155106_address and profile")]
-    partial class addressandprofile
+    [Migration("20220316102846_userProfile FK address and user as PK")]
+    partial class userProfileFKaddressanduserasPK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,28 +213,13 @@ namespace NewOmniVus.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.AppUserAddress", b =>
+            modelBuilder.Entity("NewOmniVus.Models.AppUserProfile", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
-
-                    b.HasKey("UserId", "AddressId");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("UserAddresses");
-                });
-
-            modelBuilder.Entity("NewOmniVus.Models.AppUserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -244,20 +229,17 @@ namespace NewOmniVus.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("UserId", "AddressId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.AppUserAddress", b =>
+            modelBuilder.Entity("NewOmniVus.Models.AppUserProfile", b =>
                 {
                     b.HasOne("NewOmniVus.Models.AppAddress", "Address")
-                        .WithMany()
+                        .WithMany("UserProfiles")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -273,13 +255,9 @@ namespace NewOmniVus.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.AppUserProfile", b =>
+            modelBuilder.Entity("NewOmniVus.Models.AppAddress", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
+                    b.Navigation("UserProfiles");
                 });
 #pragma warning restore 612, 618
         }

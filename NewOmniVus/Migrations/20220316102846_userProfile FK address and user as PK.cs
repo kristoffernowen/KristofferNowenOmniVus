@@ -4,7 +4,7 @@
 
 namespace NewOmniVus.Migrations
 {
-    public partial class addressandprofile : Migration
+    public partial class userProfileFKaddressanduserasPK : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -254,40 +254,22 @@ namespace NewOmniVus.Migrations
                 name: "Profiles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Profiles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Profiles_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserAddresses",
-                columns: table => new
-                {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false)
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAddresses", x => new { x.UserId, x.AddressId });
+                    table.PrimaryKey("PK_Profiles", x => new { x.UserId, x.AddressId });
                     table.ForeignKey(
-                        name: "FK_UserAddresses_Addresses_AddressId",
+                        name: "FK_Profiles_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserAddresses_Users_UserId",
+                        name: "FK_Profiles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -295,13 +277,8 @@ namespace NewOmniVus.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Profiles_UserId",
+                name: "IX_Profiles_AddressId",
                 table: "Profiles",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserAddresses_AddressId",
-                table: "UserAddresses",
                 column: "AddressId");
         }
 
@@ -309,9 +286,6 @@ namespace NewOmniVus.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Profiles");
-
-            migrationBuilder.DropTable(
-                name: "UserAddresses");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

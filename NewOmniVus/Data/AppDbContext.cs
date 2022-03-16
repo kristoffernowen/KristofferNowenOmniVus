@@ -12,24 +12,24 @@ namespace NewOmniVus.Data
         }
 
         public DbSet<AppAddress> Addresses { get; set; }
-        public DbSet<AppUserAddress> UserAddresses { get; set; }
+        // public DbSet<AppUserAddress> UserAddresses { get; set; }
 
         public DbSet<AppUserProfile> Profiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AppUserAddress>()
+            modelBuilder.Entity<AppUserProfile>()
                 .HasKey(c => new { c.UserId, c.AddressId });
-
+            
             modelBuilder.Entity<IdentityUserLogin<string>>()
                 .HasKey("LoginProvider", "ProviderKey");
-
+            
             modelBuilder.Entity<IdentityUserRole<string>>()
                 .HasKey("UserId", "RoleId");
-
+            
             modelBuilder.Entity<IdentityUserToken<string>>()
                 .HasKey("UserId", "LoginProvider", "Name");
-
+        
         }
     }
 }

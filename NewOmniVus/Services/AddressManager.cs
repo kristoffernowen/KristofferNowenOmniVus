@@ -19,27 +19,27 @@ namespace NewOmniVus.Services
             return await _appDbContext.Addresses.ToListAsync();
         }
 
-        public async Task<AppAddress> GetAddress(string userId)
-        {
-            var address = await _appDbContext.UserAddresses.Include(x => x.Address)
-                .FirstOrDefaultAsync(x => x.UserId == userId);
+        // public async Task<AppAddress> GetAddress(string userId)
+        // {
+        //     var address = await _appDbContext.UserAddresses.Include(x => x.Address)
+        //         .FirstOrDefaultAsync(x => x.UserId == userId);
+        //
+        //     return address.Address;
+        // }
 
-            return address.Address;
-        }
-
-        public async Task CreateUserAddress(IdentityUser user, AppAddress address)
-        {
-            _appDbContext.Addresses.Add(address);
-            await _appDbContext.SaveChangesAsync();
-
-            var userAddress = new AppUserAddress
-            {
-                UserId = user.Id,
-                AddressId = address.Id
-            };
-            _appDbContext.UserAddresses.Add(userAddress);
-            await _appDbContext.SaveChangesAsync();
-        }
+        // public async Task CreateUserAddress(IdentityUser user, AppAddress address)
+        // {
+        //     _appDbContext.Addresses.Add(address);
+        //     await _appDbContext.SaveChangesAsync();
+        //
+        //     var userAddress = new AppUserAddress
+        //     {
+        //         UserId = user.Id,
+        //         AddressId = address.Id
+        //     };
+        //     _appDbContext.UserAddresses.Add(userAddress);
+        //     await _appDbContext.SaveChangesAsync();
+        // }
     }
 
 }

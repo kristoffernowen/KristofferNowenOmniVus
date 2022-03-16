@@ -14,5 +14,7 @@ namespace NewOmniVus.Models
         public string AddressLine { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
+        public ICollection<AppUserProfile> UserProfiles { get; set; }
+        
     }
 }
