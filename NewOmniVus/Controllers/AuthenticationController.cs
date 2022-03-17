@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NewOmniVus.Data;
 using NewOmniVus.Models;
+using NewOmniVus.Models.Addresses;
+using NewOmniVus.Models.Profiles;
+using NewOmniVus.Services;
 
 namespace NewOmniVus.Controllers
 {
@@ -12,16 +15,17 @@ namespace NewOmniVus.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ProfileManager _profileManager;
+        private readonly AddressManager _addressManager;
 
-        public AuthenticationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AuthenticationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, ProfileManager profileManager, AddressManager addressManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _profileManager = profileManager;
+            _addressManager = addressManager;
         }
-
-
-        private readonly AppDbContext _appDbContext;
 
 
         public IActionResult SignUp(string returnUrl = null)
@@ -66,6 +70,28 @@ namespace NewOmniVus.Controllers
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
+                var address = new AppAddress
+                {
+                    AddressLine = model.AddressLine,
+                    PostalCode = model.PostalCode,
+                    City = model.City,
+                };
+
+                var addressId = await _addressManager.CreateUserAddressAsync(address);
+
+
+                var userProfile = new SignUpAppUserProfile
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserEmail = model.Email,
+                    AddressId = addressId
+                };
+
+
+                await _profileManager.CreateProfileAsync(userProfile);
+
 
                 if (result.Succeeded)
                 {

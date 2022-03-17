@@ -4,7 +4,8 @@ namespace NewOmniVus.Models
 {
     public class SignUpModel
     {
-        
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         [Display(Name = "E-Postadress")]
         [Required(ErrorMessage = "Du måste ange en e-postadress")]
@@ -24,5 +25,9 @@ namespace NewOmniVus.Models
         public string ConfirmPassword { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public string AddressLine { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
     }
 }

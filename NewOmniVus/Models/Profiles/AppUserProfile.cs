@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using NewOmniVus.Models.Addresses;
 
-namespace NewOmniVus.Models
+namespace NewOmniVus.Models.Profiles
 {
     public class AppUserProfile
     {
@@ -12,8 +13,8 @@ namespace NewOmniVus.Models
         [Required, PersonalData]
         public string LastName { get; set; }
 
-        public IdentityUser User { get; set; }
-        public string UserId { get; set; }
+        
+        public string UserEmail { get; set; }
         public AppAddress Address { get; set; }
         public int AddressId { get; set; }
     }

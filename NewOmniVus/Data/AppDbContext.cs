@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Models;
+using NewOmniVus.Models.Addresses;
+using NewOmniVus.Models.Profiles;
 
 namespace NewOmniVus.Data
 {
@@ -10,26 +12,7 @@ namespace NewOmniVus.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
-        public DbSet<AppAddress> Addresses { get; set; }
-        // public DbSet<AppUserAddress> UserAddresses { get; set; }
-
-        public DbSet<AppUserProfile> Profiles { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AppUserProfile>()
-                .HasKey(c => new { c.UserId, c.AddressId });
-            
-            modelBuilder.Entity<IdentityUserLogin<string>>()
-                .HasKey("LoginProvider", "ProviderKey");
-            
-            modelBuilder.Entity<IdentityUserRole<string>>()
-                .HasKey("UserId", "RoleId");
-            
-            modelBuilder.Entity<IdentityUserToken<string>>()
-                .HasKey("UserId", "LoginProvider", "Name");
         
-        }
+
     }
 }

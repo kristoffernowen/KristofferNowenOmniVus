@@ -2,44 +2,50 @@
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
 using NewOmniVus.Models;
+using NewOmniVus.Models.Addresses;
+using NewOmniVus.Models.Profiles;
 
 namespace NewOmniVus.Services
 {
     public class AddressManager
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly SecondDbContext _secondDbContext;
 
-        public AddressManager(AppDbContext appDbContext)
+        public AddressManager(SecondDbContext secondDbContext)
         {
-            _appDbContext = appDbContext;
+            _secondDbContext = secondDbContext;
         }
 
-        public async Task<IEnumerable<AppAddress>> GetAllAddresses()
+        public async Task<IEnumerable<AppAddress>> GetAllAddressesAsync()
         {
-            return await _appDbContext.Addresses.ToListAsync();
+            return await _secondDbContext.Addresses.ToListAsync();
         }
 
-        // public async Task<AppAddress> GetAddress(string userId)
-        // {
-        //     var address = await _appDbContext.UserAddresses.Include(x => x.Address)
-        //         .FirstOrDefaultAsync(x => x.UserId == userId);
-        //
-        //     return address.Address;
-        // }
+        public async Task<AppAddress> GetAddressAsync(int addressId)
+        {
+            return await _secondDbContext.Addresses.SingleOrDefaultAsync(x => x.Id == addressId);
+        }
 
-        // public async Task CreateUserAddress(IdentityUser user, AppAddress address)
-        // {
-        //     _appDbContext.Addresses.Add(address);
-        //     await _appDbContext.SaveChangesAsync();
-        //
-        //     var userAddress = new AppUserAddress
-        //     {
-        //         UserId = user.Id,
-        //         AddressId = address.Id
-        //     };
-        //     _appDbContext.UserAddresses.Add(userAddress);
-        //     await _appDbContext.SaveChangesAsync();
-        // }
+        public async Task<int> CreateUserAddressAsync(AppAddress address)
+        {
+            int addressId;
+
+            var doesAddressExist = await _secondDbContext.Addresses.FirstOrDefaultAsync(x =>
+                x.AddressLine == address.AddressLine && x.PostalCode == address.PostalCode && x.City == address.City);
+            if (doesAddressExist == null)
+            {
+                _secondDbContext.Add(address);
+                await _secondDbContext.SaveChangesAsync();
+
+                addressId = address.Id;
+            }
+            else
+            {
+                addressId = doesAddressExist.Id;
+            }
+
+            return (addressId);
+        }
     }
 
 }

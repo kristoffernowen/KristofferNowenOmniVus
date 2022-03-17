@@ -12,15 +12,32 @@
     <p>Create an account.</p>
 </div>
 <form id="signup-form" asp-action="SignUp" asp-route-returnUrl="@Model.ReturnUrl" >
-            
+       
+    <div>
+        <input asp-for="FirstName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your firstname" >
+        <span  asp-validation-for="FirstName" class=" ps-2 text-danger"></span>
+    </div>
+    <div>
+        <input asp-for="LastName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your lastname" >
+        <span  asp-validation-for="LastName" class=" ps-2 text-danger"></span>
+    </div>
+    <div >
+        <input asp-for="AddressLine" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your streetaddress"/>
+    </div>
+    <div >
+        <input asp-for="PostalCode" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your postalcode"/>
+    </div>
+    <div >
+        <input asp-for="City" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your city"/>
+    </div>
     <div>
         <input asp-for="Email" id="signup-email" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your email" >
         <span id="signup-email-error" asp-validation-for="Email" class=" ps-2 text-danger"></span>
     </div>
     <div class="d-flex justify-content-center">
-        <input asp-for="Password" type="text" class="col-md-4 p-3 me-2 mt-5" placeholder="Enter your password" >
+        <input asp-for="Password" type="password" class="col-md-4 p-3 me-2 mt-5" placeholder="Enter your password" >
 
-        <input asp-for="ConfirmPassword" type="text" class="col-md-4 p-3 ms-2 mt-5" placeholder="Confirm your password">
+        <input asp-for="ConfirmPassword" type="password" class="col-md-4 p-3 ms-2 mt-5" placeholder="Confirm your password">
     </div>
     <div class="d-flex justify-content-between px-3 col-8 offset-2 ">
         <div class="col-4 ">

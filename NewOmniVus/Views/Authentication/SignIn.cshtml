@@ -12,6 +12,7 @@
     <p>Log in to your account. No account? Sign up <a asp-controller="Authentication" asp-action="SignUp">here</a></p>
 </div>
 <form id="login-form" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl">
+
     <div class="d-flex">
         <input id="login-email" asp-for="Email" type="text" class="col-6 p-3 me-2 mt-5" placeholder="Enter your email">
         <input id="login-password" asp-for="Password" type="password" class="col-6 p-3 ms-2 mt-5" placeholder="Enter your password">

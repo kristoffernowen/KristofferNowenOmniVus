@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
+using NewOmniVus.Services;
+
+// using NewOmniVus.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 
 builder.Services.AddDbContext<SecondDbContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("SecondSql")));
+
+builder.Services.AddScoped<AddressManager>();
+builder.Services.AddScoped<ProfileManager>();
+
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {

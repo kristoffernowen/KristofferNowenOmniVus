@@ -56,35 +56,22 @@ namespace NewOmniVus.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public async Task<IActionResult> TestOfDb()
-        {
-            var koffesEmail = "koffe@koffe.se";
-            // var joinedUser = from u in _appDbContext.Users
-            //     join n in _secondDbContext.SecondUsers on u.Email equals n.Email
-            //     select new TestModel
-            //     {
-            //         Name = n.Name,
-            //         UserId = u.Id
-            //     };
-            // var one = _appDbContext.Users.AsQueryable();
-            // var two = _secondDbContext.SecondUsers.AsQueryable();
-            //
-            //
-            // var result1 = (from o in one where one.SingleOrDefault(x=> x.Email == koffesEmail))
-            //     
-            //     select 
-
-            var koffeUser = await _appDbContext.Users.SingleOrDefaultAsync(x => x.Email == koffesEmail);
-            var koffeSecond = await _secondDbContext.SecondUsers.SingleOrDefaultAsync(x => x.Email == koffesEmail);
-
-            var koffe = new TestModel();
-
-            koffe.Name = koffeSecond.Name;
-            koffe.UserId = koffeUser.Id;
-
-            return View(koffe);
-        
-        
-        }
+        // public async Task<IActionResult> TestOfDb()
+        // {
+        //     var koffesEmail = "koffe@koffe.se";
+        //     
+        //
+        //     var koffeUser = await _appDbContext.Users.SingleOrDefaultAsync(x => x.Email == koffesEmail);
+        //     var koffeSecond = await _secondDbContext.SecondUsers.SingleOrDefaultAsync(x => x.Email == koffesEmail);
+        //
+        //     var koffe = new TestModel();
+        //
+        //     koffe.Name = koffeSecond.Name;
+        //     koffe.UserId = koffeUser.Id;
+        //
+        //     return View(koffe);
+        //
+        //
+        // }
     }
 }

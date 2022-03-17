@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using NewOmniVus.Models.Profiles;
 
-namespace NewOmniVus.Models
+namespace NewOmniVus.Models.Addresses
 {
     public class AppAddress
     {
