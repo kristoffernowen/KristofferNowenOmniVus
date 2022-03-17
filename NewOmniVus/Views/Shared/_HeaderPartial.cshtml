@@ -12,9 +12,8 @@
                 @if(_signInManager.IsSignedIn(User))
                 {
                     <div class="social">
-                        <a href="#">@User.Identity?.Name</a>
+                        <a asp-controller="Profile" asp-action="Index">Edit profile</a>
                         <a href="#">@Model.DisplayName</a>
-
                     </div>                    
                 }
                 else
