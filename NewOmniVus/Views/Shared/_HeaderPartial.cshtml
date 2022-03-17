@@ -1,4 +1,5 @@
 ﻿
+@model SignInModel
 <section id="header-section" class="container-fluid">
     <div id="" class="container  container-fluid d-flex justify-content-between">
         <div id="brand-div">
@@ -12,6 +13,8 @@
                 {
                     <div class="social">
                         <a href="#">@User.Identity?.Name</a>
+                        <a href="#">@Model.DisplayName</a>
+
                     </div>                    
                 }
                 else

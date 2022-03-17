@@ -53,6 +53,14 @@ namespace NewOmniVus.Services
 
             return ("Profile created");
         }
+
+        public async Task<string> GetProfileDisplayName(string email)
+        {
+
+            var profile = await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.UserEmail == email);
+
+            return profile.FirstName + " " + profile.LastName; ;
+        }
     }
 
 }

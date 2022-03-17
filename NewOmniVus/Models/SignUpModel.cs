@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewOmniVus.Models
 {
     public class SignUpModel
     {
+        [Required(ErrorMessage = "You must submit a firstname")]
+        [Display(Name = "FirstName")]
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

@@ -155,6 +155,9 @@ namespace NewOmniVus.Controllers
             ModelState.AddModelError(string.Empty, "Felaktigt försök");
             ViewData["Error"] = "Felaktigt försök";
 
+            if(_signInManager.IsSignedIn(User))
+                model.DisplayName = await _profileManager.GetProfileDisplayName(model.Email);
+
             return View(model);
         }
 

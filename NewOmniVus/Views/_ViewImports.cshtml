@@ -2,7 +2,9 @@
 @using NewOmniVus
 @using NewOmniVus.Data
 @using NewOmniVus.Models
+@using NewOmniVus.Services
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @inject SignInManager<IdentityUser> _signInManager;
 @inject UserManager<IdentityUser> _userManager;
+@inject ProfileManager _profileManager;

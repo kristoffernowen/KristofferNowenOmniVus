@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
+using NewOmniVus.Services;
 
 namespace NewOmniVus.Controllers
 {
@@ -15,14 +16,16 @@ namespace NewOmniVus.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _appDbContext;
         private readonly SecondDbContext _secondDbContext;
+        private readonly ProfileManager _profileManager;
 
-        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, AppDbContext appDbContext, SecondDbContext secondDbContext)
+        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, AppDbContext appDbContext, SecondDbContext secondDbContext, ProfileManager profileManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _appDbContext = appDbContext;
             _secondDbContext = secondDbContext;
+            _profileManager = profileManager;
         }
 
 
@@ -33,22 +36,39 @@ namespace NewOmniVus.Controllers
         //     _logger = logger;
         // }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var displayUser = new SignInModel();
+            if (_signInManager.IsSignedIn(User))
+            {
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+            }
+
+            return View(displayUser);
         }
         [Authorize]
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
-            return View();
 
+            var displayUser = new SignInModel();
+            if (_signInManager.IsSignedIn(User))
+            {
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+            }
 
+            return View(displayUser);
         }
 
         [Authorize]
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            var displayUser = new SignInModel();
+            if (_signInManager.IsSignedIn(User))
+            {
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+            }
+
+            return View(displayUser);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -56,22 +76,20 @@ namespace NewOmniVus.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        // public async Task<IActionResult> TestOfDb()
-        // {
-        //     var koffesEmail = "koffe@koffe.se";
-        //     
-        //
-        //     var koffeUser = await _appDbContext.Users.SingleOrDefaultAsync(x => x.Email == koffesEmail);
-        //     var koffeSecond = await _secondDbContext.SecondUsers.SingleOrDefaultAsync(x => x.Email == koffesEmail);
-        //
-        //     var koffe = new TestModel();
-        //
-        //     koffe.Name = koffeSecond.Name;
-        //     koffe.UserId = koffeUser.Id;
-        //
-        //     return View(koffe);
-        //
-        //
-        // }
+        public async Task<IActionResult> TestOfDb()
+        {
+            var signedInEmail = User.Identity.Name;
+        
+            var koffeUser = await _appDbContext.Users.SingleOrDefaultAsync(x => x.Email == signedInEmail);
+            var koffeSecond = await _secondDbContext.Profiles.SingleOrDefaultAsync(x => x.UserEmail == signedInEmail);
+
+            var koffe = new DisplayModel(koffeSecond.FirstName, koffeSecond.LastName, koffeUser.Id);
+        
+            
+        
+            return View(koffe);
+        
+        
+        }
     }
 }

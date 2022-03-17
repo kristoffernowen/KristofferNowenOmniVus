@@ -1,4 +1,4 @@
-﻿@model TestModel
+﻿@model DisplayModel
 @{
     ViewData["Title"] = "TestOfDb";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -8,8 +8,8 @@
     <div>
         <h1>TestOfDb</h1>
         <div>
-            @* <h4>@Model.Name</h4> *@
-            @* <h4>@Model.UserId</h4> *@
+            <h4>@Model.DisplayName</h4>
+            <h4>@User.Identity?.Name</h4>
         </div>
     </div>
 </div>
