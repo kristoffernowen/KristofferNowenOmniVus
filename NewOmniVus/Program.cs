@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
+using NewOmniVus.Data.Claims;
 using NewOmniVus.Services;
 
 // using NewOmniVus.Services;
@@ -33,6 +34,16 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.LoginPath = "/authentication/signin";
     x.AccessDeniedPath = "/authentication/denied";
 });
+
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, IdentityUserClaims>();
+
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy("Admins", y => y.RequireRole("Admin"));
+    x.AddPolicy("Users", a => a.RequireRole("Admin", "User"));
+});
+
+
 
 
 

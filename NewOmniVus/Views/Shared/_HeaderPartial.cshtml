@@ -1,5 +1,5 @@
 ﻿
-@model SignInModel
+
 <section id="header-section" class="container-fluid">
     <div id="" class="container  container-fluid d-flex justify-content-between">
         <div id="brand-div">
@@ -13,7 +13,15 @@
                 {
                     <div class="social">
                         <a asp-controller="Profile" asp-action="Index">Edit profile</a>
-                        <a href="#">@Model.DisplayName</a>
+                       
+                        <a href="#">@User.FindFirst("DisplayName").Value</a>
+                        <a href="#">@User.FindFirst("Role").Value</a>
+                        <a href="#">@User.FindFirst("City").Value</a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Role" asp-action="Index">Manage roles</a>
+                        }
                     </div>                    
                 }
                 else

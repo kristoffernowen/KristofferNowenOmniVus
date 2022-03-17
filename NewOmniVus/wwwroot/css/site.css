@@ -271,8 +271,11 @@
         color: #c5d5e7;
     }
 
-    #denied-div {
-        background-image: url("/images/FatFrog.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+#denied-div {
+    background: url("/images/FatFrog.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+#denied-div h1 {
+    font-size: 20rem;
+}
+
