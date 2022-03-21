@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -71,7 +72,21 @@ namespace NewOmniVus.Controllers
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                var address = new AppAddress
+                // var testRole = await _roleManager.AddClaimAsync(new IdentityRole("Unlucky"), new Claim(ClaimTypes.Country, "Unluckystan"));
+                await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Country, "Unluckystan"));  // fungerar men kräver hela typesraden (lång) från tabellen
+                // no instance of an object i header vyn
+
+                await _userManager.AddClaimAsync(user, new Claim("Fortune", "You will succeed!"));
+
+                // var roleTest = new IdentityRole
+                // {
+                //     Name = "buyu"
+                // };
+
+                // await _roleManager.CreateAsync(roleTest);
+                // await _roleManager.AddClaimAsync(roleTest, new Claim("Ryu", "Kuki"));  Kanske funkar?
+
+                var address = new AppAddressEntity
                 {
                     AddressLine = model.AddressLine,
                     PostalCode = model.PostalCode,
@@ -83,6 +98,7 @@ namespace NewOmniVus.Controllers
 
                 var userProfile = new SignUpAppUserProfile
                 {
+                    Id = user.Id,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserEmail = model.Email,
@@ -156,7 +172,7 @@ namespace NewOmniVus.Controllers
             ViewData["Error"] = "Felaktigt försök";
 
             if(_signInManager.IsSignedIn(User))
-                model.DisplayName = await _profileManager.GetProfileDisplayName(model.Email);
+                model.DisplayName = await _profileManager.GetProfileDisplayNameAsync(model.Email);
 
             return View(model);
         }

@@ -9,8 +9,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="microsoft.entityframeworkcore" Version="6.0.3" />
-    <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="6.0.3" />
-    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.3">
+    <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="6.0.2" />
+    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -12,25 +12,28 @@ namespace NewOmniVus.Data
         }
         // public DbSet<SecondUser> SecondUsers { get; set; }
 
-        public DbSet<AppAddress> Addresses { get; set; }
+        public DbSet<AppAddressEntity> Addresses { get; set; }
         // public DbSet<AppUserAddress> UserAddresses { get; set; }
 
-        public DbSet<AppUserProfile> Profiles { get; set; }
+        public DbSet<AppUserProfileEntity> Profiles { get; set; }
+        // public DbSet<AppUserAddress> UserAddresses { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AppUserProfile>()
-                .HasKey(c => new { c.UserEmail, c.AddressId });
+        public DbSet<NewOmniVus.Models.Profiles.SignUpAppUserProfile> SignUpAppUserProfile { get; set; }
 
-            // modelBuilder.Entity<IdentityUserLogin<string>>()
-            //     .HasKey("LoginProvider", "ProviderKey");
-            //
-            // modelBuilder.Entity<IdentityUserRole<string>>()
-            //     .HasKey("UserId", "RoleId");
-            //
-            // modelBuilder.Entity<IdentityUserToken<string>>()
-            //     .HasKey("UserId", "LoginProvider", "Name");
-
-        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<AppUserProfileEntity>()
+        //         .HasKey(c => new { c.UserEmail, c.AddressId });
+        //
+        //     // modelBuilder.Entity<IdentityUserLogin<string>>()
+        //     //     .HasKey("LoginProvider", "ProviderKey");
+        //     //
+        //     // modelBuilder.Entity<IdentityUserRole<string>>()
+        //     //     .HasKey("UserId", "RoleId");
+        //     //
+        //     // modelBuilder.Entity<IdentityUserToken<string>>()
+        //     //     .HasKey("UserId", "LoginProvider", "Name");
+        //
+        // }
     }
 }

@@ -31,7 +31,8 @@ namespace NewOmniVus.Data.Claims
 
             claimsIdentity.AddClaim(new Claim("DisplayName", $"{profile.FirstName} {profile.LastName}"));
             claimsIdentity.AddClaim(new Claim("Role", $"{_role.Name}"));
-            claimsIdentity.AddClaim(new Claim("City", $"från {address.Address.City}"));
+            
+            claimsIdentity.AddClaim(new Claim("Id", $"{user.Id}"));
 
 
             return claimsIdentity;

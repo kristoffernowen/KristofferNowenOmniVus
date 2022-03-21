@@ -4,10 +4,16 @@ using NewOmniVus.Models.Addresses;
 
 namespace NewOmniVus.Models.Profiles
 {
-    public class AppUserProfile
+    public class AppUserProfileEntity
     {
-        // [Key]
-        // public int Id { get; set; }
+        [Key]
+        public string Id { get; set; }
+
+        
+        
+        
+
+
         [Required, PersonalData]
         public string FirstName { get; set; }
         [Required, PersonalData]
@@ -15,7 +21,7 @@ namespace NewOmniVus.Models.Profiles
 
         
         public string UserEmail { get; set; }
-        public AppAddress Address { get; set; }
+        public AppAddressEntity Address { get; set; }
         public int AddressId { get; set; }
     }
 }

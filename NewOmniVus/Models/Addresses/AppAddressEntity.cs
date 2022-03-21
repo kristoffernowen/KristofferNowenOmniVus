@@ -5,7 +5,7 @@ using NewOmniVus.Models.Profiles;
 
 namespace NewOmniVus.Models.Addresses
 {
-    public class AppAddress
+    public class AppAddressEntity
     {
         [Key]
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace NewOmniVus.Models.Addresses
         public string AddressLine { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
-        public ICollection<AppUserProfile> UserProfiles { get; set; }
+        public ICollection<AppUserProfileEntity> UserProfiles { get; set; }
         
     }
 }

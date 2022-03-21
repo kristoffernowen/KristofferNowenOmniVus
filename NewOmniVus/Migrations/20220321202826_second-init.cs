@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace NewOmniVus.Migrations.SecondDb
+namespace KristofferNowen_OmniVus.Migrations
 {
-    public partial class initsecond : Migration
+    public partial class secondinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,14 +27,15 @@ namespace NewOmniVus.Migrations.SecondDb
                 name: "Profiles",
                 columns: table => new
                 {
-                    UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Profiles", x => new { x.UserEmail, x.AddressId });
+                    table.PrimaryKey("PK_Profiles", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Profiles_Addresses_AddressId",
                         column: x => x.AddressId,

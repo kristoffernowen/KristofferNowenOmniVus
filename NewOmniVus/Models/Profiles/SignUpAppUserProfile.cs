@@ -4,7 +4,8 @@ namespace NewOmniVus.Models.Profiles
 {
     public class SignUpAppUserProfile
     {
-       
+
+        public string Id { get; set; }
         public string FirstName { get; set; }
         
         public string LastName { get; set; }
@@ -12,7 +13,8 @@ namespace NewOmniVus.Models.Profiles
 
         public string UserEmail { get; set; }
         public int AddressId { get; set; }
-        
+
+
         
     }
 }

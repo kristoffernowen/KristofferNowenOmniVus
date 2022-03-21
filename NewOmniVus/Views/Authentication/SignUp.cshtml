@@ -11,8 +11,8 @@
     <h2>Sign Up</h2>
     <p>Create an account.</p>
 </div>
-<form id="signup-form" asp-action="SignUp" asp-route-returnUrl="@Model.ReturnUrl" >
-       
+<form id="signup-form" asp-action="SignUp"  > 
+    @* asp-route-returnUrl="@Model.ReturnUrl"  *@
     <div>
         <input asp-for="FirstName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your firstname" >
         <span  asp-validation-for="FirstName" class=" ps-2 text-danger"></span>

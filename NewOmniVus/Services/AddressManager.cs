@@ -16,17 +16,17 @@ namespace NewOmniVus.Services
             _secondDbContext = secondDbContext;
         }
 
-        public async Task<IEnumerable<AppAddress>> GetAllAddressesAsync()
+        public async Task<IEnumerable<AppAddressEntity>> GetAllAddressesAsync()
         {
             return await _secondDbContext.Addresses.ToListAsync();
         }
 
-        public async Task<AppAddress> GetAddressAsync(int addressId)
+        public async Task<AppAddressEntity> GetAddressAsync(int addressId)
         {
             return await _secondDbContext.Addresses.SingleOrDefaultAsync(x => x.Id == addressId);
         }
 
-        public async Task<int> CreateUserAddressAsync(AppAddress address)
+        public async Task<int> CreateUserAddressAsync(AppAddressEntity address)
         {
             int addressId;
 

@@ -2,17 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewOmniVus.Data;
 
 #nullable disable
 
-namespace NewOmniVus.Migrations.SecondDb
+namespace KristofferNowen_OmniVus.Migrations
 {
     [DbContext(typeof(SecondDbContext))]
-    partial class SecondDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220321202826_second-init")]
+    partial class secondinit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace NewOmniVus.Migrations.SecondDb
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("NewOmniVus.Models.Addresses.AppAddress", b =>
+            modelBuilder.Entity("NewOmniVus.Models.Addresses.AppAddressEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,9 +46,9 @@ namespace NewOmniVus.Migrations.SecondDb
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.Profiles.AppUserProfile", b =>
+            modelBuilder.Entity("NewOmniVus.Models.Profiles.AppUserProfileEntity", b =>
                 {
-                    b.Property<string>("UserEmail")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AddressId")
@@ -60,16 +62,19 @@ namespace NewOmniVus.Migrations.SecondDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserEmail", "AddressId");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
                     b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.Profiles.AppUserProfile", b =>
+            modelBuilder.Entity("NewOmniVus.Models.Profiles.AppUserProfileEntity", b =>
                 {
-                    b.HasOne("NewOmniVus.Models.Addresses.AppAddress", "Address")
+                    b.HasOne("NewOmniVus.Models.Addresses.AppAddressEntity", "Address")
                         .WithMany("UserProfiles")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -78,7 +83,7 @@ namespace NewOmniVus.Migrations.SecondDb
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("NewOmniVus.Models.Addresses.AppAddress", b =>
+            modelBuilder.Entity("NewOmniVus.Models.Addresses.AppAddressEntity", b =>
                 {
                     b.Navigation("UserProfiles");
                 });

@@ -16,12 +16,12 @@ namespace NewOmniVus.Services
             _secondDbContext = secondDbContext;
         }
 
-        public async Task<IEnumerable<AppUserProfile>> GetAllProfilesAsync()
+        public async Task<IEnumerable<AppUserProfileEntity>> GetAllProfilesAsync()
         {
             return await _secondDbContext.Profiles.ToListAsync();
         }
 
-        public async Task<AppUserProfile> GetProfileAsync(string userEmail)
+        public async Task<AppUserProfileEntity> GetProfileAsync(string userEmail)
         {
             return await _secondDbContext.Profiles.SingleOrDefaultAsync(x => x.UserEmail == userEmail);
         }
@@ -34,8 +34,9 @@ namespace NewOmniVus.Services
                 await _secondDbContext.Profiles.SingleOrDefaultAsync(x => x.UserEmail == model.UserEmail);
             if (doesProfileExist == null)
             {
-                _secondDbContext.Profiles.Add(new AppUserProfile
+                _secondDbContext.Profiles.Add(new AppUserProfileEntity
                 {
+                    Id = model.Id,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserEmail = model.UserEmail,
@@ -54,7 +55,7 @@ namespace NewOmniVus.Services
             return ("Profile created");
         }
 
-        public async Task<string> GetProfileDisplayName(string email)
+        public async Task<string> GetProfileDisplayNameAsync(string email)
         {
 
             var profile = await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.UserEmail == email);

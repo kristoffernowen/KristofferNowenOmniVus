@@ -41,7 +41,7 @@ namespace NewOmniVus.Controllers
             var displayUser = new SignInModel();
             if (_signInManager.IsSignedIn(User))
             {
-                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayNameAsync(User.Identity?.Name);
             }
 
             return View(displayUser);
@@ -53,7 +53,7 @@ namespace NewOmniVus.Controllers
             var displayUser = new SignInModel();
             if (_signInManager.IsSignedIn(User))
             {
-                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayNameAsync(User.Identity?.Name);
             }
 
             return View(displayUser);
@@ -65,7 +65,7 @@ namespace NewOmniVus.Controllers
             var displayUser = new SignInModel();
             if (_signInManager.IsSignedIn(User))
             {
-                displayUser.DisplayName = await _profileManager.GetProfileDisplayName(User.Identity?.Name);
+                displayUser.DisplayName = await _profileManager.GetProfileDisplayNameAsync(User.Identity?.Name);
             }
 
             return View(displayUser);
