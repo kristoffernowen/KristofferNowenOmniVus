@@ -5,7 +5,12 @@
 }
 
 
-
+<div class="col-8 offset-2">
+    <div class="d-flex justify-content-around m-3 text-light">
+        <h3>@User.FindFirst("DisplayName").Value </h3>
+        <h3>signed in as a @User.FindFirst("Role").Value </h3>
+    </div>
+</div>
 <form id="signup-form" asp-action="Index" asp-route-returnUrl="@Model.ReturnUrl" >
        
     <div>
@@ -17,8 +22,10 @@
         <span  asp-validation-for="LastName" class=" ps-2 text-danger"></span>
     </div>
     <div >
-        <input asp-for="AddressLine" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.AddressLine"/>
+        <input asp-for="AddressLine" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.AddressLine"/>
+        <p class="col-8 offset-2 p-3 mt-5 p-box">Old street address: @Model.AddressLine</p>
     </div>
+    
     <div >
         <input asp-for="PostalCode" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.PostalCode"/>
     </div>

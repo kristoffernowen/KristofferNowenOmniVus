@@ -270,7 +270,11 @@
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
     }
-
+.p-box {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #c5d5e7;
+}
 #denied-div {
     background: url("/images/FatFrog.jpg") no-repeat center center fixed;
     background-size: cover;

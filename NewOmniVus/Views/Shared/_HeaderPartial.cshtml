@@ -16,10 +16,11 @@
                        
                         <a href="#">@User.FindFirst("DisplayName").Value</a>
                         <a href="#">@User.FindFirst("Role").Value</a>
-                        <a href="#">@User.FindFirst("Id").Value</a>
+                        
                         
                         <a>@User.FindFirst("Fortune").Value</a>
-                        <a >@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
+                        <a asp-controller="Authentication" asp-action="SignOut">Sign out</a>
+                        <a asp-controller="Profile" asp-action="Index" >@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
                        
                         @if (User.IsInRole("Admin"))
                         {
