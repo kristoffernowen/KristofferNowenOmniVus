@@ -12,8 +12,8 @@
                 @if(_signInManager.IsSignedIn(User))
                 {
                     <div class="social">
-                        <a asp-controller="Profile" asp-action="Index">Edit profile</a>
-                       
+                        @* <a asp-controller="Profile" asp-action="Index">Edit profile</a> *@
+                        <a asp-controller="Profile" asp-action="Edit" asp-route-id="@User.FindFirst("Id").Value">P.Edit</a>
                         <a href="#">@User.FindFirst("DisplayName").Value</a>
                         <a href="#">@User.FindFirst("Role").Value</a>
                         

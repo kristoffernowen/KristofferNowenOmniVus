@@ -5,12 +5,10 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1 class="text-light">Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table text-light">
+
+<table class="table text-light nill-border col-6 ">
     <thead>
         <tr>
             <th>
@@ -28,27 +26,36 @@
             <th></th>
         </tr>
     </thead>
-    <tbody class="text-light">
+    <tbody class="text-light nill-border">
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address.AddressLine)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <tr class="no-border col-8">
+        <td  class="text-danger my-5 nill-border col-1">
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td class="col-1">
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.AddressLine)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a>
+            <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a>
+        </td>
+    </tr>
+    <tr>
+        <td>@await _profileManager.GetProfileDisplayNameAsync(item.UserEmail)</td>
+        <td>
+            <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a>
+            <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a>
+        </td>
+    </tr>
 }
     </tbody>
 </table>

@@ -283,3 +283,16 @@
     font-size: 20rem;
 }
 
+
+
+
+
+.no-border {
+    border: none;
+    background-color: #002249;
+    height: 100px;
+    text-decoration: none;
+}
+.nill-border {
+    border: none;
+}
