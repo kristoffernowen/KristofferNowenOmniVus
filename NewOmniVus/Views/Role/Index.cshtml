@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<IdentityRole>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -6,3 +6,7 @@
 
 <h1 class="text-light text-center">Roles</h1>
 
+@foreach (var role in Model)
+{
+    <p>@role.Name</p>
+}

@@ -20,7 +20,7 @@
                         
                         <a>@User.FindFirst("Fortune").Value</a>
                         <a asp-controller="Authentication" asp-action="SignOut">Sign out</a>
-                        <a asp-controller="Profile" asp-action="Edit" >@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
+                        <a asp-controller="Profile" asp-action="Edit" asp-route-id="@User.FindFirst("Id").Value">@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
                        
                         @if (User.IsInRole("Admin"))
                         {

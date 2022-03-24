@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NewOmniVus.Data;
 
 namespace NewOmniVus.Controllers
 {
     public class RoleController : Controller
     {
-        [Authorize(Policy = "Admins")]
-        public IActionResult Index()
+        private readonly AppDbContext _appDbContext;
+
+        public RoleController(AppDbContext appDbContext)
         {
-            return View();
+            _appDbContext = appDbContext;
+        }
+
+        [Authorize(Policy = "Admins")]
+        public async Task<IActionResult> Index()
+        {
+            var roles = await _appDbContext.Roles.ToListAsync();
+
+            return View(roles);
         }
     }
 }
