@@ -5,57 +5,92 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1 class="text-light">Index</h1>
+<h1 class="text-light text-center">Profiles</h1>
 
+<div class="d-flex justify-content-between">
+    <div class=" text-light d-flex justify-content-center col-3 pt-3">
+        <p>Name</p>
+        
+    </div>
+    <div class=" text-light d-flex justify-content-center col-3 pt-3">
+        <p>Email</p>
+        
+    </div>
+    <div class="  d-flex justify-content-between col-3 pt-3">
+        
+    </div>
+</div>
 
-<table class="table text-light nill-border col-6 ">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody class="text-light nill-border">
-@foreach (var item in Model) {
-    <tr class="no-border col-8">
-        <td  class="text-danger my-5 nill-border col-1">
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td class="col-1">
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.AddressLine)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a>
-            <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a>
-        </td>
-    </tr>
-    <tr>
-        <td>@await _profileManager.GetProfileDisplayNameAsync(item.UserEmail)</td>
-        <td>
-            <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a>
-            <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a>
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    <div class="p-box d-flex justify-content-between my-4">
+        <div class="text-light d-flex justify-content-center align-items-center col-3">
+            
+            <div><p class="pt-3">@item.FirstName @item.LastName</p></div>
+        </div>
+        <div class="text-light d-flex justify-content-center align-items-center col-3">
+            
+            <div><p class="pt-3">@item.UserEmail</p></div>
+        </div>
+        <div class="text-light d-flex justify-content-around align-items-center col-3">
+            <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id" class="no-deco-a">Details</a> 
+            <a asp-controller="Profile" asp-action="Edit" asp-route-id="@item.Id" class="no-deco-a">Edit</a> 
+            <a asp-controller="Profile" asp-action="Delete" asp-route-id="@item.Id" class="no-deco-a">Delete</a>
+            <a asp-action="Delete" asp-route-id="@item.Id">DeleteAsp</a>
+        </div>
+    </div>
+    
 }
-    </tbody>
-</table>
+
+
+@* <table class="table text-light nill-border col-6 "> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.FirstName) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.LastName) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.UserEmail) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.Address) *@
+@*             </th> *@
+@*             <th></th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody class="text-light nill-border"> *@
+@* @foreach (var item in Model) { *@
+@*     <tr class="no-border col-8"> *@
+@*         <td  class="text-danger my-5 nill-border col-1"> *@
+@*             @Html.DisplayFor(modelItem => item.FirstName) *@
+@*         </td> *@
+@*         <td class="col-1"> *@
+@*             @Html.DisplayFor(modelItem => item.LastName) *@
+@*         </td> *@
+@*         <td> *@
+@*             @Html.DisplayFor(modelItem => item.UserEmail) *@
+@*         </td> *@
+@*         <td> *@
+@*             @Html.DisplayFor(modelItem => item.Address.AddressLine) *@
+@*         </td> *@
+@*         <td> *@
+@*             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
+@*             <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
+@*             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+@*             <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a> *@
+@*             <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a> *@
+@*         </td> *@
+@*     </tr> *@
+@*     <tr> *@
+@*         <td>@await _profileManager.GetProfileDisplayNameAsync(item.UserEmail)</td> *@
+@*         <td> *@
+@*             <a asp-controller="Profile" asp-action="Details" asp-route-id="@item.Id">Check</a> *@
+@*             <a asp-controller="Profile" asp-action="ManagerEdit" asp-route-id="@item.Id">P.Edit</a> *@
+@*         </td> *@
+@*     </tr> *@
+@* } *@
+@*     </tbody> *@
+@* </table> *@

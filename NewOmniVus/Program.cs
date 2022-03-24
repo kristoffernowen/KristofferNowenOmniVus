@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
@@ -41,7 +43,11 @@ builder.Services.AddAuthorization(x =>
 {
     x.AddPolicy("Admins", y => y.RequireRole("Admin"));
     x.AddPolicy("Users", a => a.RequireRole("Admin", "User"));
+    
 });
+
+
+
 
 
 

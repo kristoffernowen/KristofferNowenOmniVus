@@ -20,13 +20,14 @@
                         
                         <a>@User.FindFirst("Fortune").Value</a>
                         <a asp-controller="Authentication" asp-action="SignOut">Sign out</a>
-                        <a asp-controller="Profile" asp-action="Index" >@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
+                        <a asp-controller="Profile" asp-action="Edit" >@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
                        
                         @if (User.IsInRole("Admin"))
                         {
                             <a asp-controller="Role" asp-action="Index">Manage roles</a>
+                            <a asp-controller="Profile" asp-action="Index">AppProfiles</a>
                         }
-                        <a asp-controller="AppUserProfileEntities" asp-action="Index">AppProfiles</a>
+                        
                     </div>                    
                 }
                 else

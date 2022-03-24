@@ -45,29 +45,13 @@ namespace NewOmniVus.Controllers
         public async Task<IActionResult> Index(string returnUrl = null)
         {
 
-            var model = await _secondDbContext.Profiles.Include(x => x.Address).FirstOrDefaultAsync(x => x.UserEmail == User.Identity.Name);
+            var secondDbContext = _secondDbContext.Profiles.Include(a => a.Address);
+            return View(await secondDbContext.ToListAsync());
 
-            var editModel = new EditAppUserProfile
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                AddressLine = model.Address.AddressLine,
-                PostalCode = model.Address.PostalCode,
-                City = model.Address.City,
-                
-
-            };
-
-            if (returnUrl != null)
-                editModel.ReturnUrl = returnUrl;
-            else
-            {
-                editModel.ReturnUrl = "/";
-            }
-
-
-            return View(editModel);
+            
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Index(EditAppUserProfile profileModel, string returnUrl = null)
@@ -141,114 +125,13 @@ namespace NewOmniVus.Controllers
         }
 
 
-        public async Task<IActionResult> Edit(string returnUrl = null)
-        {
-
-            var model = await _secondDbContext.Profiles.Include(x => x.Address).FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
-
-            var editModel = new EditAppUserProfile
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                AddressLine = model.Address.AddressLine,
-                PostalCode = model.Address.PostalCode,
-                City = model.Address.City,
-                
-
-            };
-
-            if (returnUrl != null)
-                editModel.ReturnUrl = returnUrl;
-            else
-            {
-                editModel.ReturnUrl = "/";
-            }
-
-
-            return View(editModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditAppUserProfile profileModel, string returnUrl = null)
-        {
-            var originalProfile =
-
-            await _secondDbContext.Profiles.Include(x => x.Address)
-                .FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
-
-            originalProfile.FirstName = profileModel.FirstName;
-            originalProfile.LastName = profileModel.LastName;
-
-            // kan jag nog flytta till addressmanager delen
-
-            var userAddressId =
-                await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
-
-            // var howManyOfThisAddressId = await _secondDbContext.Profiles
-            //     .Where(ai => ai.AddressId == originalProfile.AddressId).ToListAsync();    Borde väl bli samma
-            var howManyId = await _secondDbContext.Profiles.Where(a => a.AddressId == userAddressId.AddressId).ToListAsync();
-
-
-            if (howManyId.Count > 1)
-            {
-
-                var createThisAddress = new AppAddressEntity
-                {
-                    AddressLine = profileModel.AddressLine,
-                    PostalCode = profileModel.PostalCode,
-                    City = profileModel.City,
-                };
-                originalProfile.AddressId = await _addressManager.CreateUserAddressAsync(createThisAddress);
-            }
-            else if (howManyId.Count <= 1)
-            {
-                originalProfile.Address.AddressLine = profileModel.AddressLine;
-                originalProfile.Address.PostalCode = profileModel.PostalCode;
-                originalProfile.Address.City = profileModel.City;
-            }
-
-            //_secondDbContext.Entry(originalProfile).State = EntityState.Modified;
-
-
-            if (ModelState.IsValid)  //Här är den Hans körde. självgenererad?
-            {
-                try
-                {
-                    _secondDbContext.Update(originalProfile);
-                    await _secondDbContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AppUserProfileEntityExists(originalProfile.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index", "Home");
-            }
-
-
-            //await _secondDbContext.SaveChangesAsync();
-
-            if (returnUrl != null)
-                profileModel.ReturnUrl = returnUrl;
-            else
-            {
-                profileModel.ReturnUrl = "/";
-            }
-
-            return View(profileModel);
-        }
-       // [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ManagerEdit(string id, string returnUrl = null)
+       
+        [Authorize]
+        public async Task<IActionResult> Edit(string id, string returnUrl = null)
         {
             if(!User.IsInRole("Admin"))
                 if (!User.FindFirst("Id").Value.Equals(id))
-                    return Unauthorized();   // ska bli access denied vyn...
+                    return RedirectToAction("Denied", "Authentication");   // ska bli access denied vyn...
 
             var model = await _secondDbContext.Profiles.Include(x => x.Address).FirstOrDefaultAsync(x => x.Id == id);
 
@@ -276,7 +159,7 @@ namespace NewOmniVus.Controllers
        // [Authorize(Roles = "Admin")]
 
         [HttpPost]
-        public async Task<IActionResult> ManagerEdit(string id, EditAppUserProfile profileModel, string returnUrl = null)
+        public async Task<IActionResult> Edit(string id, EditAppUserProfile profileModel, string returnUrl = null)
         {
             // if (!User.FindFirst("Id").Value.Equals(id))
             //     return Unauthorized();
@@ -354,6 +237,34 @@ namespace NewOmniVus.Controllers
             }
 
             return View(profileModel);
+        }
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var appUserProfileEntity = await _secondDbContext.Profiles
+                .Include(a => a.Address)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (appUserProfileEntity == null)
+            {
+                return NotFound();
+            }
+
+            return View(appUserProfileEntity);
+        }
+
+        // POST: AppUserProfileEntities/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var appUserProfileEntity = await _secondDbContext.Profiles.FindAsync(id);
+            _secondDbContext.Profiles.Remove(appUserProfileEntity);
+            await _secondDbContext.SaveChangesAsync();
+            return RedirectToAction("Index", "AppUserProfileEntities");
         }
         private bool AppUserProfileEntityExists(string id)
         {

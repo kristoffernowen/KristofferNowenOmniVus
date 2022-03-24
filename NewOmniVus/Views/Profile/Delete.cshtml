@@ -1,0 +1,22 @@
+﻿@model NewOmniVus.Models.Profiles.AppUserProfileEntity
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div id="delete-confirm-div">
+    <h1  class="text-center text-light col-6 offset-3">Delete this profile</h1>
+    <h2 class="p-box container-fluid col-6 offset-3 text-center text-light">@Model.FirstName @Model.LastName</h2>
+
+    
+        <form asp-controller="Profile" asp-action="Delete">
+            <div class="d-flex justify-content-between col-6 offset-3 text-light">
+                <input type="hidden" asp-for="Id" />
+                <button class="button-omni btn-delete"><input type="submit" value="Delete"/></button> 
+                <button class="button-omni btn-delete"><a asp-action="Index">Back to List</a></button>
+            </div>
+        </form>
+    
+
+</div>
+

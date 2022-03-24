@@ -78,16 +78,11 @@ namespace NewOmniVus.Controllers
         }
         public async Task<IActionResult> TestOfDb()
         {
-            var signedInEmail = User.Identity.Name;
-        
-            var koffeUser = await _appDbContext.Users.SingleOrDefaultAsync(x => x.Email == signedInEmail);
-            var koffeSecond = await _secondDbContext.Profiles.SingleOrDefaultAsync(x => x.UserEmail == signedInEmail);
-
-            var koffe = new DisplayModel(koffeSecond.FirstName, koffeSecond.LastName, koffeUser.Id);
+            
         
             
         
-            return View(koffe);
+            return View();
         
         
         }

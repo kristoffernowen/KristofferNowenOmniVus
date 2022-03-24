@@ -274,6 +274,7 @@
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #c5d5e7;
+    text-decoration: none;
 }
 #denied-div {
     background: url("/images/FatFrog.jpg") no-repeat center center fixed;
@@ -294,5 +295,37 @@
     text-decoration: none;
 }
 .nill-border {
+    border: none;
+}
+.no-deco-a {
+    text-decoration: none;
+}
+    .no-deco-a:hover {
+        color: white;
+        font-size: 1.5rem;
+        text-align: center;
+        
+        
+    }
+#delete-confirm-div {
+    height: 50vh;
+}
+    #delete-confirm-div h1    {
+        font-size: 5rem;
+        margin-bottom: 3rem;
+    }
+    #delete-confirm-div h2 {
+        margin-bottom: 5rem;
+    }
+.btn-delete {
+    color: white;
+    min-width: 12rem;
+}
+.btn-delete a {
+    color: white !important;
+    text-decoration: none;
+}
+.btn-delete input {
+    color: white !important;
     border: none;
 }
