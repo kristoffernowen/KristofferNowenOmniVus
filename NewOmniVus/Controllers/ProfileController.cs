@@ -40,6 +40,16 @@ namespace NewOmniVus.Controllers
                 return NotFound();
             }
 
+            
+
+
+            // if (returnUrl != null)
+            //     editModel.ReturnUrl = returnUrl;
+            // else
+            // {
+            //     editModel.ReturnUrl = "/";
+            // }
+
             return View(appUserProfileEntity);
         }
         public async Task<IActionResult> Index(string returnUrl = null)

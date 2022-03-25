@@ -468,6 +468,10 @@
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
     }
+.log-section button a {
+    color: white;
+    text-decoration: none;
+}
 .p-box {
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);

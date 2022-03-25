@@ -22,3 +22,11 @@ document.getElementById("contact-email").addEventListener("keyup",
             document.getElementById("contact-email-response").innerText = "";
         }
     });
+
+document.getElementById("contact-textarea").addEventListener("keyup", function (e) {
+    if (e.target.value.length < 3) {
+        document.getElementById("contact-textarea-response").innerText = "You must enter a message";
+    } else {
+        document.getElementById("contact-textarea-response").innerText = "";
+    }
+});

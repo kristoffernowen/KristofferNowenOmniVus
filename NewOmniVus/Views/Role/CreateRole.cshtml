@@ -1,0 +1,22 @@
+﻿@model KristofferNowen_OmniVus.Models.Roles.CreateRoleModel
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="text-center"><h1>CreateRole</h1></div>
+
+<form asp-action="CreateRole" class="col-8 offset-2">
+    <div>
+        <p>Name the role you want to create</p>
+        <input asp-for="RoleName" placeholder="name of role"/>
+    </div>
+    <div>
+        <p>Name who you want to give it to</p>
+        <input asp-for="UserEmail" placeholder="email of user"/>
+    </div>
+    <div>
+        <button class="button-omni" type="submit">Create</button>
+    </div>
+</form>
+
+

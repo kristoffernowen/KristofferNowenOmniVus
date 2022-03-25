@@ -20,3 +20,11 @@ document.getElementById("book-a-meeting-email").addEventListener("keyup",
             document.getElementById("book-a-meeting-email-response").innerText = "";
         }
     });
+
+document.getElementById("book-a-meeting-textarea").addEventListener("keyup", function(e) {
+    if (e.target.value.length < 3) {
+        document.getElementById("book-a-meeting-textarea-response").innerText = "You must enter a message";
+    } else {
+        document.getElementById("book-a-meeting-textarea-response").innerText = "";
+    }
+});
