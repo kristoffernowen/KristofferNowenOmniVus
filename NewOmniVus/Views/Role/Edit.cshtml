@@ -1,0 +1,22 @@
+﻿@model KristofferNowen_OmniVus.Models.Roles.EditRoleModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<div class="text-center"><h1>Edit</h1></div>
+
+<form asp-action="Edit" class="col-4 offset-4">
+    <div>
+        <p>Name the role you want to create</p>
+        <input id="create-roleName" asp-for="RoleName" class="container-fluid" placeholder="name of role"/>
+        <p id="create-roleName-response"></p>
+    </div>
+    
+    <div class="d-flex  flex-column">
+        <button class="button-omni my-3" type="submit" >Create</button>
+        <button class="button-omni"><a asp-controller="Role" asp-action="Index">Role index</a></button>
+    </div>
+</form>

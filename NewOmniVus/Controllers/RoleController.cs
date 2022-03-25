@@ -48,5 +48,120 @@ namespace NewOmniVus.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(string id, string returnUrl = null)
+        {
+
+
+            var model = await _appDbContext.Roles.FirstOrDefaultAsync(r => r.Id == id);
+            var editModel = new EditRoleModel()
+            {
+               RoleName = model.Name,
+                
+
+
+            };
+
+            if (returnUrl != null)
+                editModel.ReturnUrl = returnUrl;
+            else
+            {
+                editModel.ReturnUrl = "/";
+            }
+
+
+            return View(editModel);
+        }
+        // [Authorize(Roles = "Admin")]
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, EditRoleModel roleModel, string returnUrl = null)
+        {
+            // if (!User.FindFirst("Id").Value.Equals(id))
+            //     return Unauthorized();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var originalRole =
+
+                await _appDbContext.Roles.FirstOrDefaultAsync(r => r.Id == id);
+
+            originalRole.Name = roleModel.RoleName;
+            
+
+            
+           
+
+
+            if (ModelState.IsValid)  //Här är den Hans körde. självgenererad?
+            {
+                try
+                {
+                    _appDbContext.Update(originalRole);
+                    await _appDbContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    // if (!AppUserProfileEntityExists(originalProfile.Id))
+                    // {
+                    //     return NotFound();
+                    // }
+                    // else
+                    // {
+                    //     throw;
+                    // }
+                }
+                return RedirectToAction("Index", "Role");
+            }
+
+
+            
+
+            if (returnUrl != null)
+                roleModel.ReturnUrl = returnUrl;
+            else
+            {
+                roleModel.ReturnUrl = "/";
+            }
+
+            return View();
+        }
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var roleEntityy = await _appDbContext.Roles.FirstOrDefaultAsync(r => r.Id == id);
+            if (roleEntityy == null)
+            {
+                return NotFound();
+            }
+
+            return View(roleEntityy);
+        }
+
+        
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            
+            var roleEntity = await _appDbContext.Roles.FindAsync(id);
+            if (!roleEntity.Name.Equals("Admin"))
+            {
+                _appDbContext.Roles.Remove(roleEntity);
+                await _appDbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", "Role");
+        }
+
+
     }
 }

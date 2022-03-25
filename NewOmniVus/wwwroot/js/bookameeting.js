@@ -1,10 +1,10 @@
-﻿const nameRegex = /^[A-Z,ÅÄÖ][a-öA-Ö]+(\-[A-Z,ÅÄÖ][a-ö]+)?\s[A-Z,ÅÄÖ][a-öA-Ö]+(\-[A-Z,ÅÄÖ][a-ö]+)?$/
+﻿const fullNameRegex = /^[A-Z,ÅÄÖ][a-öA-Ö]+(\-[A-Z,ÅÄÖ][a-ö]+)?\s[A-Z,ÅÄÖ][a-öA-Ö]+(\-[A-Z,ÅÄÖ][a-ö]+)?$/
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
 document.getElementById("book-a-meeting-name").addEventListener("keyup",
     function (e) {
-        if (!nameRegex.test(e.target.value)) {
+        if (!fullNameRegex.test(e.target.value)) {
             document.getElementById("book-a-meeting-name-response").innerText =
                 "You must enter a valid firstname and lastname, starting with capital letter";
         } else {
@@ -27,4 +27,9 @@ document.getElementById("book-a-meeting-textarea").addEventListener("keyup", fun
     } else {
         document.getElementById("book-a-meeting-textarea-response").innerText = "";
     }
+});
+
+
+document.getElementById("book-a-meeting-form").addEventListener("submit", function(e) {
+    alert("No message was sent");
 });

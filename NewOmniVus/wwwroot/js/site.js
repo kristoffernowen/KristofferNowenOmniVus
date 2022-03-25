@@ -30,3 +30,13 @@ document.getElementById("contact-textarea").addEventListener("keyup", function (
         document.getElementById("contact-textarea-response").innerText = "";
     }
 });
+
+const adminNameRegex = /^[a-zA-Z]{3,20}$/;
+
+document.getElementById("create-roleName").addEventListener("keyup", function(e) {
+    if (!adminNameRegex.test(e.target.value)) {
+        document.getElementById("create-roleName-response").innerText = "Must be between 3 and 20 letters, capital or small"
+    } else {
+        document.getElementById("create-roleName-response").innerText = "";
+    }
+});

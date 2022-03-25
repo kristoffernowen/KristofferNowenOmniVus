@@ -13,12 +13,14 @@ namespace NewOmniVus.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+        private readonly AppDbContext _appDbContext;
         private readonly SecondDbContext _secondDbContext;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AddressManager _addressManager;
 
-        public ProfileController(SecondDbContext secondDbContext, SignInManager<IdentityUser> signInManager, AddressManager addressManager)
+        public ProfileController(AppDbContext appDbContext, SecondDbContext secondDbContext, SignInManager<IdentityUser> signInManager, AddressManager addressManager)
         {
+            _appDbContext = appDbContext;
             _secondDbContext = secondDbContext;
             _signInManager = signInManager;
             _addressManager = addressManager;
@@ -62,77 +64,77 @@ namespace NewOmniVus.Controllers
         }
 
 
-
-        [HttpPost]
-        public async Task<IActionResult> Index(EditAppUserProfile profileModel, string returnUrl = null)
-        {
-            var originalProfile =
-            
-            await _secondDbContext.Profiles.Include(x => x.Address)
-                .FirstOrDefaultAsync(x => x.UserEmail == User.Identity.Name);
-
-            originalProfile.FirstName = profileModel.FirstName;
-            originalProfile.LastName = profileModel.LastName;
-
-            var userAddressId =
-                await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
-            var howManyId = await _secondDbContext.Profiles.Where(a => a.AddressId == userAddressId.AddressId).ToListAsync();
-
-
-            if (howManyId.Count > 1)
-            {
-                
-                var createThisAddress = new AppAddressEntity
-                {
-                    AddressLine = profileModel.AddressLine,
-                    PostalCode = profileModel.PostalCode,
-                    City = profileModel.City,
-                };
-                originalProfile.AddressId = await _addressManager.CreateUserAddressAsync(createThisAddress);
-            }
-            else if(howManyId.Count <= 1)
-            {
-                originalProfile.Address.AddressLine = profileModel.AddressLine;
-                originalProfile.Address.PostalCode = profileModel.PostalCode;
-                originalProfile.Address.City = profileModel.City;
-            }
-            
-           //_secondDbContext.Entry(originalProfile).State = EntityState.Modified;
-           
-
-            if (ModelState.IsValid)  //Här är den Hans körde. självgenererad?
-            {
-                try
-                {
-                    _secondDbContext.Update(originalProfile);
-                    await _secondDbContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AppUserProfileEntityExists(originalProfile.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index", "Home");
-            }
-
-
-            //await _secondDbContext.SaveChangesAsync();
-
-            if (returnUrl != null)
-                profileModel.ReturnUrl = returnUrl;
-            else
-            {
-                profileModel.ReturnUrl = "/";
-            }
-
-            return View(profileModel);
-        }
+        //
+        // [HttpPost]
+        // public async Task<IActionResult> Index(EditAppUserProfile profileModel, string returnUrl = null)
+        // {
+        //     var originalProfile =
+        //     
+        //     await _secondDbContext.Profiles.Include(x => x.Address)
+        //         .FirstOrDefaultAsync(x => x.UserEmail == User.Identity.Name);
+        //
+        //     originalProfile.FirstName = profileModel.FirstName;
+        //     originalProfile.LastName = profileModel.LastName;
+        //
+        //     var userAddressId =
+        //         await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
+        //     var howManyId = await _secondDbContext.Profiles.Where(a => a.AddressId == userAddressId.AddressId).ToListAsync();
+        //
+        //
+        //     if (howManyId.Count > 1)
+        //     {
+        //         
+        //         var createThisAddress = new AppAddressEntity
+        //         {
+        //             AddressLine = profileModel.AddressLine,
+        //             PostalCode = profileModel.PostalCode,
+        //             City = profileModel.City,
+        //         };
+        //         originalProfile.AddressId = await _addressManager.CreateUserAddressAsync(createThisAddress);
+        //     }
+        //     else if(howManyId.Count <= 1)
+        //     {
+        //         originalProfile.Address.AddressLine = profileModel.AddressLine;
+        //         originalProfile.Address.PostalCode = profileModel.PostalCode;
+        //         originalProfile.Address.City = profileModel.City;
+        //     }
+        //     
+        //    //_secondDbContext.Entry(originalProfile).State = EntityState.Modified;
+        //    
+        //
+        //     if (ModelState.IsValid)  //Här är den Hans körde. självgenererad?
+        //     {
+        //         try
+        //         {
+        //             _secondDbContext.Update(originalProfile);
+        //             await _secondDbContext.SaveChangesAsync();
+        //         }
+        //         catch (DbUpdateConcurrencyException)
+        //         {
+        //             if (!AppUserProfileEntityExists(originalProfile.Id))
+        //             {
+        //                 return NotFound();
+        //             }
+        //             else
+        //             {
+        //                 throw;
+        //             }
+        //         }
+        //         return RedirectToAction("Index", "Home");
+        //     }
+        //
+        //
+        //     //await _secondDbContext.SaveChangesAsync();
+        //
+        //     if (returnUrl != null)
+        //         profileModel.ReturnUrl = returnUrl;
+        //     else
+        //     {
+        //         profileModel.ReturnUrl = "/";
+        //     }
+        //
+        //     return View(profileModel);
+        // }
 
 
        
@@ -272,8 +274,14 @@ namespace NewOmniVus.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var appUserProfileEntity = await _secondDbContext.Profiles.FindAsync(id);
+            var userIdentity = await _appDbContext.Users.FindAsync(id);
+
             _secondDbContext.Profiles.Remove(appUserProfileEntity);
             await _secondDbContext.SaveChangesAsync();
+
+            _appDbContext.Users.Remove(userIdentity);
+            await _appDbContext.SaveChangesAsync();
+
             return RedirectToAction("Index", "AppUserProfileEntities");
         }
         private bool AppUserProfileEntityExists(string id)
