@@ -60,7 +60,7 @@ namespace NewOmniVus.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Privacy()
+        public async Task<IActionResult> Services()
         {
             var displayUser = new SignInModel();
             if (_signInManager.IsSignedIn(User))

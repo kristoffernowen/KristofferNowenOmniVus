@@ -296,3 +296,119 @@ $light-blue-text: #C5D5E7;
         border: 2px solid rgba(255,255,255, 0.20);
     }
 }
+
+
+
+.contact-service-header-section {
+    padding-top: 150px;
+    background: rgb(254,254,254);
+    background: radial-gradient(circle, rgba(254,254,254,1) 26%, rgba(203,223,250,1) 81%, rgba(169,199,236,1) 100%);
+    //  background: rgb(254,254,254);
+    // background: radial-gradient(circle, rgba(254,254,254,1) 25%, rgba(169,199,236,1) 100%);
+    width: 100%;
+
+    #div-1-contact {
+        height: 25rem;
+
+        h1 {
+            font-size: 5rem;
+            font-family: $roboto;
+        }
+
+        #link-div-contact {
+
+            a {
+                color: $green-gray-text;
+                text-decoration: none;
+            }
+
+            span {
+                color: $green-gray-text;
+            }
+        }
+    }
+}
+
+#contact-form-section {
+    margin-top: 5rem;
+
+    #contact-form-left {
+        p:nth-of-type(1) {
+            color: $blue;
+            margin-right: 1rem;
+        }
+
+        img {
+            padding-bottom: 0.3rem;
+        }
+
+        h2 {
+            font-size: 3.75rem;
+            font-family: $roboto;
+        }
+
+        form {
+            input {
+                border: none;
+            }
+
+            textarea {
+                border: none;
+            }
+        }
+    }
+
+    #contact-form-right {
+        img {
+            margin-top: 5rem;
+        }
+    }
+}
+
+#services-grid-section {
+    margin-top: 100px;
+
+    #the-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10% 5%;
+
+        .div-box {
+            height: 300px;
+            width: 370px;
+            background-color: #C1C1C1;
+            display: flex;
+            flex-direction: column-reverse;
+
+            .text-div {
+                position: relative;
+                background-color: #707070;
+                height: 25%;
+                color: white;
+
+                &:hover {
+                    background-color: #4D99F9;
+                    height: 180px;
+
+                    #hidden-text {
+                        display: block;
+                    }
+                }
+
+                #hidden-text {
+                    display: none;
+                }
+
+                img {
+                    position: absolute;
+                    z-index: 2;
+                    height: 70px;
+                    width: 70px;
+                    left: 2rem;
+                    top: -2rem;
+                }
+            }
+        }
+    }
+}

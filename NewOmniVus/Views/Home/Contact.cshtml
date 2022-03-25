@@ -4,9 +4,45 @@
 
 
 
-<div class="d-flex justify-content-center align-items-center vh-100 sky-bg">
-    
-    <h2>Contact</h2>
-</div>
+<section class="contact-service-header-section">
+    <div id="div-1-contact" class="d-flex justify-content-center align-items-center">
+        <div class="text-center">
+            <h1 class="mb-4">Contact Us</h1>
+            <div id="link-div-contact">
+                <a href="">Home</a> 
+                <span>|</span>
+                <a href="">Contact</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-<partial name="_FooterPartial      "/>
+<section id="contact-form-section" class="small-container">
+    <div class="d-flex justify-content-between">
+        <div id="contact-form-left">
+            <div class="d-flex justify-content-start">
+                <small><p>Get in Touch</p></small>
+                <div class="align-items-center">
+                    <img src="/images/line.svg" alt="">
+                </div>
+            </div>
+            <h2 class="my-4">Estimate for your<br> projects.</h2>
+            <form action="">
+                <div class="d-flex flex-column ps-4">
+                    <input id="contact-name" class="my-4" type="text" placeholder="Enter your name">
+                    <p id="contact-name-response" class="text-danger"></p>
+                    <input id="contact-email"   class="my-4"    type="text" placeholder="Enter your email">
+                    <p id="contact-email-response" class="text-danger"></p>
+                    <textarea class="my-4" name="" id="" cols="30" rows="5" placeholder="Enter your message"></textarea>
+                </div>
+                <button class="button-omni">Submit Now</button>
+            </form>
+        </div>
+        <div id="contact-form-right">
+            <img src="/images/Estimate-square.svg" asp-append-version="true" alt="">
+        </div>
+    </div>
+</section>
+
+<partial name="_FooterPartial"/>
+
