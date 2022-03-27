@@ -72,6 +72,9 @@ namespace NewOmniVus.Controllers
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
+                
+
+
                 // var testRole = await _roleManager.AddClaimAsync(new IdentityRole("Unlucky"), new Claim(ClaimTypes.Country, "Unluckystan"));
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Country, "Unluckystan"));  // fungerar men kräver hela typesraden (lång) från tabellen
                 // no instance of an object i header vyn

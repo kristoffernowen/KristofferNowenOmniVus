@@ -15,6 +15,7 @@ namespace NewOmniVus.Data.Claims
             _secondDbContext = context;
         }
 
+
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(IdentityUser user)
         {
             var claimsIdentity = await base.GenerateClaimsAsync(user);

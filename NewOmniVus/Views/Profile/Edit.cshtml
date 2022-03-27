@@ -41,17 +41,32 @@
     <div >
         <small><p class="col-8 offset-2 mt-5 ps-3">Postal code</p></small>
         <input asp-for="PostalCode" type="text" class="col-8 offset-2 p-3" placeholder="@Model.PostalCode"/>
-        <span asp-validation-for="AddressLine" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
+        <span asp-validation-for="PostalCode" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     <div >
         <small><p class="col-8 offset-2 mt-5 ps-3">City</p></small>
         <input asp-for="City" type="text" class="col-8 offset-2 p-3" placeholder="@Model.City"/>
-        <span asp-validation-for="AddressLine" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
+        <span asp-validation-for="City" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
+    @if (User.IsInRole("User"))
+    {
+        <div class="col-8 offset-2 p-0 d-flex">
+            <div class="col-6 p-0">
+                <small><p class="mt-5 ps-3">Current password</p></small>
+                <input asp-for="CurrentPassword" type="password" class="p-3 me-2 container-fluid" placeholder="CurrentPassword"/>
+                <span asp-validation-for="CurrentPassword" class="p-3 mt-5 text-danger"></span>
+            </div>
+            <div class="col-6 p-0">
+                <small><p class="  mt-5 ps-3">New password</p></small>
+                <input asp-for="NewPassword" type="password" class=" p-3 ms-2 container-fluid" placeholder="NewPassword"/>
+                <span asp-validation-for="NewPassword" class=" p-3 mt-5 text-danger"></span>
+            </div>
+        </div>
+    }
     <div>
         <small><p class="col-8 offset-2 mt-5 ps-3">Email</p></small>
         <input asp-for="Email" id="signup-email" type="text" class="col-8 offset-2 p-3 mb-5" placeholder="@Model.Email">
-        <span id="signup-email-error" asp-validation-for="Email" class=" ps-2 text-danger"></span>
+        <span asp-validation-for="Email" class=" ps-2 text-danger"></span>
     </div>
     
     

@@ -12,23 +12,19 @@
                 @if(_signInManager.IsSignedIn(User))
                 {
                     <div class="social">
-                        @* <a asp-controller="Profile" asp-action="Index">Edit profile</a> *@
-                        @* <a asp-controller="Profile" asp-action="Edit" asp-route-id="@User.FindFirst("Id").Value">P.Edit</a> *@
-                        <a href="#">@User.FindFirst("DisplayName").Value</a>
+                        <a class="socialmedia-a" asp-controller="Profile" asp-action="Details" asp-route-id="@User.FindFirst("Id").Value">@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
                         <a href="#">@User.FindFirst("Role").Value</a>
-                        
-                        
-                        <a>@User.FindFirst("Fortune").Value</a>
-                        <a asp-controller="Authentication" asp-action="SignOut">Sign out</a>
-                        <a asp-controller="Profile" asp-action="Details" asp-route-id="@User.FindFirst("Id").Value">@await _profileManager.GetProfileDisplayNameAsync(User.Identity.Name)</a>
+                        <a class="just-blue">@User.FindFirst("Fortune").Value</a>
                        
                         @if (User.IsInRole("Admin"))
                         {
-                            <a asp-controller="Role" asp-action="Index">Manage roles</a>
-                            <a asp-controller="Profile" asp-action="Index">Manage users</a>
+                            <a class="socialmedia-a" asp-controller="Role" asp-action="Index">Manage roles</a>
+                            <a class="socialmedia-a" asp-controller="Profile" asp-action="Index">Manage users</a>
                         }
-                        
-                    </div>                    
+
+                        <a class="socialmedia-a" asp-controller="Authentication" asp-action="SignOut">Sign out</a>
+                    </div>  
+
                 }
                 else
                 {

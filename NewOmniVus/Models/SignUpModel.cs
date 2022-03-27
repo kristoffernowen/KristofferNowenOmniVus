@@ -26,6 +26,7 @@ namespace NewOmniVus.Models
         [Display(Name = "Password")]
         [Required(ErrorMessage = "You must submit a password")]
         [StringLength(256, ErrorMessage = "Password must contain at least 8 characters", MinimumLength = 8)]
+        [RegularExpression(@"^((?=.*\d)(?=.*[A-Z]).{8,50})", ErrorMessage = "Must be at least 8 characters, 1 uppercase letter, 1 special character, alphanumeric character")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -46,7 +47,7 @@ namespace NewOmniVus.Models
         public string PostalCode { get; set; }
         [Required]
         [Display(Name = "Address line 1")]
-        [StringLength(100, ErrorMessage = "Must be at least 5 characters and at most 100 long", MinimumLength = 5)]
+        [StringLength(100, ErrorMessage = "Must be at least 2 characters and at most 100 long", MinimumLength = 2)]
         public string City { get; set; }
 
         public IFormFile File { get; set; }

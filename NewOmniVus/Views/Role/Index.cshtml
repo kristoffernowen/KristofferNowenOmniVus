@@ -7,14 +7,14 @@
 <div class="col-6 offset-3">
     <h1 class="text-light text-center">Roles</h1>
 
-    <a class="no-deco-a my-2" asp-action="CreateRole">Create Role</a>
+    <a class="just-blue my-5" asp-action="CreateRole">Create Role</a>
 
     @foreach (var role in Model)
     {
-        <div class="d-flex">
+        <div class="d-flex my-2">
             <p class="p-box container-fluid">@role.Name</p>
-            <a asp-controller="Role" asp-action="Edit" asp-route-id="@role.Id" class="no-deco-a">Edit</a> 
-            <a asp-controller="Role" asp-action="Delete" asp-route-id="@role.Id" class="no-deco-a">Delete</a>
+            <a asp-controller="Role" asp-action="Edit" asp-route-id="@role.Id" class="just-blue mx-4">Edit</a> 
+            <a asp-controller="Role" asp-action="Delete" asp-route-id="@role.Id" class="just-blue mx-4">Delete</a>
         </div>
     }
 

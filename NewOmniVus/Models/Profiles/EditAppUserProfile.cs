@@ -17,18 +17,22 @@ namespace NewOmniVus.Models.Profiles
         [Required(ErrorMessage = "You must submit an email")]
         [EmailAddress(ErrorMessage = "Email must be valid")]
         public string Email { get; set; }
+        [Display(Name = "current password")]
 
-        [Display(Name = "Lösenord")]
-        
-        [StringLength(256, ErrorMessage = "Lösenordet måste bestå av minst 8 tecken", MinimumLength = 8)]
+        [StringLength(256, ErrorMessage = "password must be at least 8 characters", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
-        [Display(Name = "Bekräfta Lösenord")]
+        [Display(Name = "current password")]
         
-        [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
+        [StringLength(256, ErrorMessage = "password must be at least 8 characters", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
+        public string CurrentPassword { get; set; } = string.Empty;
+
+        [Display(Name = "new password")]
+        [StringLength(256, ErrorMessage = "password must be at least 8 characters", MinimumLength = 8)]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; } = "";
 
         public string ReturnUrl { get; set; }
 
@@ -38,17 +42,16 @@ namespace NewOmniVus.Models.Profiles
         public string AddressLine { get; set; }
 
         [Required]
-        [Display(Name = "Address line 1")]
+        [Display(Name = "Postal code")]
         [StringLength(100, ErrorMessage = "Must be at least 5 characters and at most 100 long", MinimumLength = 5)]
         public string PostalCode { get; set; }
         [Required]
-        [Display(Name = "Address line 1")]
+        [Display(Name = "City")]
         [StringLength(100, ErrorMessage = "Must be at least 5 characters and at most 100 long", MinimumLength = 5)]
         public string City { get; set; }
 
         public string ImageFileName { get; set; }
-        [Microsoft.Build.Framework.Required]
-        [RegularExpression(@"^([a-zA-Z]+?)$")]
+        
         public string Role { get; set; }
         
         

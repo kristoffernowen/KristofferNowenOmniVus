@@ -60,6 +60,10 @@
             text-decoration: none;
         }
 
+            .socialmedia-a:hover {
+                color: #a9c7ec
+            }
+
     #header-section #menu-div {
         height: 3.5rem;
         width: 59rem;
@@ -90,7 +94,7 @@
                 padding: 0;
             }
 
-.sky-bg{
+.sky-bg {
     padding-top: 150px;
     background: #fefefe;
     background: radial-gradient(circle, #fefefe 26%, #cbdffa 81%, #a9c7ec 100%);
@@ -255,31 +259,32 @@
     padding: 7.5rem 0;
 }
 
-#book-a-meeting-section h2 {
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-size: 3.75rem;
-}
+    #book-a-meeting-section h2 {
+        color: white;
+        font-family: "Roboto", sans-serif;
+        font-size: 3.75rem;
+    }
 
-#book-a-meeting-section p {
+    #book-a-meeting-section p {
         font-family: "karla", "sans-serif";
         color: #C1D0DE;
     }
-#book-a-meeting-section .input-div {
-    width: 48%;
-}
-#book-a-meeting-section input {
+
+    #book-a-meeting-section .input-div {
+        width: 48%;
+    }
+
+    #book-a-meeting-section input {
         background-color: transparent;
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
-    
     }
+
     #book-a-meeting-section textarea {
         background-color: transparent;
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
         height: 10rem;
-
     }
 
 /* footer-section */
@@ -291,15 +296,19 @@
     padding-top: 100px;
     height: 630px;
 }
-#footer-section h4, p {
-    color: white;
-}
+
+    #footer-section h4, p {
+        color: white;
+    }
+
 #footer-left {
     width: 350px;
 }
+
 #footer-right {
     width: 375px;
 }
+
 #blue-circle2 {
     height: 375px;
     width: 375px;
@@ -311,10 +320,12 @@
     clip-path: ellipse(90% 90% at 5% 100%);
     overflow: hidden;
 }
+
 .footer-filler-div {
     width: 350px;
     height: 530px;
 }
+
 #small-circle {
     position: relative;
     top: 300px;
@@ -332,54 +343,54 @@
     width: 100%;
 }
 
-.contact-service-header-section #div-1-contact {
-    height: 25rem;
-}
+    .contact-service-header-section #div-1-contact {
+        height: 25rem;
+    }
 
-.contact-service-header-section #div-1-contact h1 {
-    font-size: 5rem;
-    font-family: "Roboto", sans-serif;
-}
+        .contact-service-header-section #div-1-contact h1 {
+            font-size: 5rem;
+            font-family: "Roboto", sans-serif;
+        }
 
-.contact-service-header-section #div-1-contact #link-div-contact a {
-    color: #69a1bb;
-    text-decoration: none;
-}
+        .contact-service-header-section #div-1-contact #link-div-contact a {
+            color: #69a1bb;
+            text-decoration: none;
+        }
 
-.contact-service-header-section #div-1-contact #link-div-contact span {
-    color: #69a1bb;
-}
+        .contact-service-header-section #div-1-contact #link-div-contact span {
+            color: #69a1bb;
+        }
 
 
 #contact-form-section {
     margin-top: 5rem;
 }
 
-#contact-form-section #contact-form-left p:nth-of-type(1) {
-    color: #006de8;
-    margin-right: 1rem;
-}
+    #contact-form-section #contact-form-left p:nth-of-type(1) {
+        color: #006de8;
+        margin-right: 1rem;
+    }
 
-#contact-form-section #contact-form-left img {
-    padding-bottom: 0.3rem;
-}
+    #contact-form-section #contact-form-left img {
+        padding-bottom: 0.3rem;
+    }
 
-#contact-form-section #contact-form-left h2 {
-    font-size: 3.75rem;
-    font-family: "Roboto", sans-serif;
-}
+    #contact-form-section #contact-form-left h2 {
+        font-size: 3.75rem;
+        font-family: "Roboto", sans-serif;
+    }
 
-#contact-form-section #contact-form-left form input {
-    border: none;
-}
+    #contact-form-section #contact-form-left form input {
+        border: none;
+    }
 
-#contact-form-section #contact-form-left form textarea {
-    border: none;
-}
+    #contact-form-section #contact-form-left form textarea {
+        border: none;
+    }
 
-#contact-form-section #contact-form-right img {
-    margin-top: 5rem;
-}
+    #contact-form-section #contact-form-right img {
+        margin-top: 5rem;
+    }
 
 
 
@@ -393,49 +404,49 @@
     margin-top: 100px;
 }
 
-#services-grid-section #the-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 10% 5%;
-}
+    #services-grid-section #the-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10% 5%;
+    }
 
-#services-grid-section #the-grid .div-box {
-    height: 300px;
-    width: 370px;
-    background-color: #C1C1C1;
-    display: flex;
-    flex-direction: column-reverse;
-}
+        #services-grid-section #the-grid .div-box {
+            height: 300px;
+            width: 370px;
+            background-color: #C1C1C1;
+            display: flex;
+            flex-direction: column-reverse;
+        }
 
-#services-grid-section #the-grid .div-box .text-div {
-    position: relative;
-    background-color: #707070;
-    height: 25%;
-    color: white;
-}
+            #services-grid-section #the-grid .div-box .text-div {
+                position: relative;
+                background-color: #707070;
+                height: 25%;
+                color: white;
+            }
 
-#services-grid-section #the-grid .div-box .text-div:hover {
-    background-color: #4D99F9;
-    height: 180px;
-}
+                #services-grid-section #the-grid .div-box .text-div:hover {
+                    background-color: #4D99F9;
+                    height: 180px;
+                }
 
-#services-grid-section #the-grid .div-box .text-div:hover #hidden-text {
-    display: block;
-}
+                    #services-grid-section #the-grid .div-box .text-div:hover #hidden-text {
+                        display: block;
+                    }
 
-#services-grid-section #the-grid .div-box .text-div #hidden-text {
-    display: none;
-}
+                #services-grid-section #the-grid .div-box .text-div #hidden-text {
+                    display: none;
+                }
 
-#services-grid-section #the-grid .div-box .text-div img {
-    position: absolute;
-    z-index: 2;
-    height: 70px;
-    width: 70px;
-    left: 2rem;
-    top: -2rem;
-}
+                #services-grid-section #the-grid .div-box .text-div img {
+                    position: absolute;
+                    z-index: 2;
+                    height: 70px;
+                    width: 70px;
+                    left: 2rem;
+                    top: -2rem;
+                }
 
 
 
@@ -446,11 +457,11 @@
 
 
 
-    .log-section {
-        margin: 8.125rem 14.25rem;
-        background-color: #001222;
-        padding: 7.5rem 0;
-    }
+.log-section {
+    margin: 8.125rem 14.25rem;
+    background-color: #001222;
+    padding: 7.5rem 0;
+}
 
     .log-section h2 {
         color: white;
@@ -468,23 +479,27 @@
         border: 2px solid rgba(255, 255, 255, 0.2);
         color: #c5d5e7;
     }
-.log-section button a {
-    color: white;
-    text-decoration: none;
-}
+
+    .log-section button a {
+        color: white;
+        text-decoration: none;
+    }
+
 .p-box {
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #c5d5e7;
     text-decoration: none;
 }
+
 #denied-div {
     background: url("/images/FatFrog.jpg") no-repeat center center fixed;
     background-size: cover;
 }
-#denied-div h1 {
-    font-size: 20rem;
-}
+
+    #denied-div h1 {
+        font-size: 20rem;
+    }
 
 
 
@@ -496,38 +511,50 @@
     height: 100px;
     text-decoration: none;
 }
+
 .nill-border {
     border: none;
 }
+
 .no-deco-a {
     text-decoration: none;
 }
+
     .no-deco-a:hover {
         color: white;
         font-size: 1.5rem;
         text-align: center;
-        
-        
     }
+
 #delete-confirm-div {
     height: 50vh;
 }
-    #delete-confirm-div h1    {
+
+    #delete-confirm-div h1 {
         font-size: 5rem;
         margin-bottom: 3rem;
     }
+
     #delete-confirm-div h2 {
         margin-bottom: 5rem;
     }
+
 .btn-delete {
     color: white;
     min-width: 12rem;
 }
-.btn-delete a {
-    color: white !important;
+
+    .btn-delete a {
+        color: white !important;
+        text-decoration: none;
+    }
+
+    .btn-delete input {
+        color: white !important;
+        border: none;
+    }
+
+
+.just-blue {
     text-decoration: none;
-}
-.btn-delete input {
-    color: white !important;
-    border: none;
 }

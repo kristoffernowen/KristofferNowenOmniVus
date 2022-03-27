@@ -16,15 +16,16 @@ namespace NewOmniVus.Controllers
     {
         private readonly AppDbContext _appDbContext;
         private readonly SecondDbContext _secondDbContext;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        // private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AddressManager _addressManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ProfileController(AppDbContext appDbContext, SecondDbContext secondDbContext, SignInManager<IdentityUser> signInManager, AddressManager addressManager)
+        public ProfileController(AppDbContext appDbContext, SecondDbContext secondDbContext, AddressManager addressManager, UserManager<IdentityUser> userManager)
         {
             _appDbContext = appDbContext;
             _secondDbContext = secondDbContext;
-            _signInManager = signInManager;
             _addressManager = addressManager;
+            _userManager = userManager;
         }
 
 
@@ -95,7 +96,7 @@ namespace NewOmniVus.Controllers
                     return RedirectToAction("Denied", "Authentication");   // ska bli access denied vyn...
 
             var model = await _secondDbContext.Profiles.Include(x => x.Address).FirstOrDefaultAsync(x => x.Id == id);
-
+            
             var imageModel = await _secondDbContext.ProfileImages.FirstOrDefaultAsync(i => i.UserId == id);
 
             var userRole = await _appDbContext.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
@@ -109,9 +110,12 @@ namespace NewOmniVus.Controllers
                 AddressLine = model.Address.AddressLine,
                 PostalCode = model.Address.PostalCode,
                 City = model.Address.City,
-                Role = role.Name
-
+                Role = role.Name,
+                CurrentPassword = "",
+                NewPassword = ""
             };
+
+            
 
             if (imageModel != null)
             {
@@ -143,6 +147,8 @@ namespace NewOmniVus.Controllers
                 return NotFound();
             }
 
+            var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+
             var originalProfile =
 
             await _secondDbContext.Profiles.Include(x => x.Address)
@@ -150,6 +156,10 @@ namespace NewOmniVus.Controllers
 
             originalProfile.FirstName = profileModel.FirstName;
             originalProfile.LastName = profileModel.LastName;
+
+            if(profileModel.CurrentPassword != null || profileModel.NewPassword != null)
+                await _userManager.ChangePasswordAsync(user, profileModel.CurrentPassword, profileModel.NewPassword);
+
 
             // kan jag nog flytta till addressmanager delen
 
