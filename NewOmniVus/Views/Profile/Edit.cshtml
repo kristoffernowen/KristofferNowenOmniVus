@@ -1,4 +1,5 @@
-﻿@model NewOmniVus.Models.Profiles.EditAppUserProfile
+﻿@using KristofferNowen_OmniVus.Migrations
+@model NewOmniVus.Models.Profiles.EditAppUserProfile
 @{
     ViewData["Title"] = "Edit profile";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -13,6 +14,9 @@
 </div>
 <form id="signup-form" asp-action="Edit" asp-route-returnUrl="@Model.ReturnUrl" >
        
+    <div class="col-8 offset-2 mt-5">
+        <img src="@("~/profileImages/"+Model.ImageFileName)" asp-append-version="true" height="150" width="150" style="border-radius: 50%" />
+    </div>
     <div>
         <input asp-for="FirstName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.FirstName" >
         <span  asp-validation-for="FirstName" class=" ps-2 text-danger"></span>
@@ -21,6 +25,8 @@
         <input asp-for="LastName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.LastName" >
         <span  asp-validation-for="LastName" class=" ps-2 text-danger"></span>
     </div>
+    
+    
     <div >
         <input asp-for="AddressLine" class="col-8 offset-2 p-3 mt-5 " placeholder="@Model.AddressLine"/>
     </div>
@@ -53,8 +59,9 @@
             }
             else
             {
-                <div class="d-flex justify-content-end">
+                <div class="d-flex flex-column">
                     <button class="button-omni my-3"><a asp-controller="Home" asp-action="Index">Home</a></button>
+                    <button class="button-omni my-3"><a asp-controller="Profile" asp-action="Details">Details</a></button>
                 </div>
             }
         </div>

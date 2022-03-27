@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Data;
+using NewOmniVus.Models;
 using NewOmniVus.Models.Addresses;
 using NewOmniVus.Models.Profiles;
 using NewOmniVus.Services;
@@ -37,11 +38,25 @@ namespace NewOmniVus.Controllers
             var appUserProfileEntity = await _secondDbContext.Profiles
                 .Include(a => a.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            var imageModel = await _secondDbContext.ProfileImages.FirstOrDefaultAsync(i => i.UserId == id);
+
             if (appUserProfileEntity == null)
             {
                 return NotFound();
             }
 
+            var displayModel = new DisplayModel
+            {
+                FirstName = appUserProfileEntity.FirstName,
+                LastName = appUserProfileEntity.LastName,
+                AddressLine = appUserProfileEntity.Address.AddressLine,
+                PostalCode = appUserProfileEntity.Address.PostalCode,
+                City = appUserProfileEntity.Address.City,
+                Email = appUserProfileEntity.UserEmail,
+                Role = User.FindFirst("Role").Value,
+                ImageFileName = imageModel.FileName
+            };
             
 
 
@@ -52,7 +67,7 @@ namespace NewOmniVus.Controllers
             //     editModel.ReturnUrl = "/";
             // }
 
-            return View(appUserProfileEntity);
+            return View(displayModel);
         }
         public async Task<IActionResult> Index(string returnUrl = null)
         {
@@ -147,6 +162,9 @@ namespace NewOmniVus.Controllers
 
             var model = await _secondDbContext.Profiles.Include(x => x.Address).FirstOrDefaultAsync(x => x.Id == id);
 
+            var imageModel = await _secondDbContext.ProfileImages.FirstOrDefaultAsync(i => i.UserId == id);
+
+
             var editModel = new EditAppUserProfile
             {
                 FirstName = model.FirstName,
@@ -154,7 +172,7 @@ namespace NewOmniVus.Controllers
                 AddressLine = model.Address.AddressLine,
                 PostalCode = model.Address.PostalCode,
                 City = model.Address.City,
-
+                ImageFileName = imageModel.FileName
 
             };
 
@@ -282,7 +300,7 @@ namespace NewOmniVus.Controllers
             _appDbContext.Users.Remove(userIdentity);
             await _appDbContext.SaveChangesAsync();
 
-            return RedirectToAction("Index", "AppUserProfileEntities");
+            return RedirectToAction("Index", "Profile");
         }
         private bool AppUserProfileEntityExists(string id)
         {

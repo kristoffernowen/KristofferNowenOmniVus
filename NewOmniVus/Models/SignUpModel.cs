@@ -33,5 +33,7 @@ namespace NewOmniVus.Models
         public string AddressLine { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
+
+        public IFormFile File { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using KristofferNowen_OmniVus.Models.Fileupload;
+using Microsoft.EntityFrameworkCore;
 using NewOmniVus.Models;
 using NewOmniVus.Models.Addresses;
 using NewOmniVus.Models.Profiles;
@@ -18,7 +19,9 @@ namespace NewOmniVus.Data
         public DbSet<AppUserProfileEntity> Profiles { get; set; }
         // public DbSet<AppUserAddress> UserAddresses { get; set; }
 
-        public DbSet<NewOmniVus.Models.Profiles.SignUpAppUserProfile> SignUpAppUserProfile { get; set; }
+        
+
+        public DbSet<ProfileImageEntity> ProfileImages { get; set; }
 
         // protected override void OnModelCreating(ModelBuilder modelBuilder)
         // {

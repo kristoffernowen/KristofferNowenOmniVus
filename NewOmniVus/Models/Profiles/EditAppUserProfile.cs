@@ -30,6 +30,8 @@ namespace NewOmniVus.Models.Profiles
         
         public string PostalCode { get; set; }
         public string City { get; set; }
+
+        public string ImageFileName { get; set; }
         
         
     }

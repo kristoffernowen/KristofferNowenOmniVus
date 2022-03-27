@@ -116,7 +116,7 @@ namespace NewOmniVus.Controllers
                     
 
                     if (model.ReturnUrl == null || model.ReturnUrl == "/")
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("FileUpload", "ProfileImage");
                     else
                         return LocalRedirect(model.ReturnUrl);
 
@@ -124,7 +124,9 @@ namespace NewOmniVus.Controllers
                 foreach (var error in result.Errors)
                 {ModelState.AddModelError(string.Empty, error.Description);}
             }
+
             
+
             return View();
         }
 

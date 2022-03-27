@@ -1,4 +1,4 @@
-﻿@model NewOmniVus.Models.Profiles.AppUserProfileEntity
+﻿@model DisplayModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -15,25 +15,32 @@
 </div>
 
        
+<div class="col-8 offset-2 mt-5 d-flex justify-content-center">
+    <img src="@("~/profileImages/"+Model.ImageFileName)" asp-append-version="true" height="150" width="150" style="border-radius: 50%" />
+</div>
 <div>
-    <p class="col-8 offset-2 p-3 mt-5 p-box"  >@Model.FirstName </p>
+    <p class="col-8 offset-2 p-3 mt-5 p-box"  >Firstname: @Model.FirstName </p>
 </div>
 <div>
     <p class="col-8 offset-2 p-3 mt-5 p-box"  > @Model.LastName</p>
 </div>
 <div >
-    <p class="col-8 offset-2 p-3 mt-5 p-box" >@Model.Address.AddressLine</p>
+    <p class="col-8 offset-2 p-3 mt-5 p-box" >@Model.AddressLine</p>
 </div>
     
 <div >
-    <p class="col-8 offset-2 p-3 mt-5 p-box" >@Model.Address.PostalCode</p>
+    <p class="col-8 offset-2 p-3 mt-5 p-box" >@Model.PostalCode</p>
 </div>
 <div >
-    <p class="col-8 offset-2 p-3 mt-5 p-box" > @Model.Address.City</p>
+    <p class="col-8 offset-2 p-3 mt-5 p-box" > @Model.City</p>
 </div>
 <div>
-    <p class="col-8 offset-2 p-3 mt-5 p-box"  >@Model.UserEmail </p>
+    <p class="col-8 offset-2 p-3 mt-5 p-box"  >@Model.Email </p>
 </div>
+<div>
+    <p class="col-8 offset-2 p-3 mt-5 p-box"  >Is in the role of: @Model.Role </p>
+</div>
+
 
 <div class=" col-8 offset-2">
     
@@ -47,8 +54,9 @@
         }
         else
         {
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-between">
                 <button class="button-omni my-3"><a asp-controller="Home" asp-action="Index">Home</a></button>
+                <button class="button-omni my-3"><a asp-controller="Profile" asp-action="Edit" asp-route-id="@User.FindFirst("Id").Value">Edit</a></button>
             </div>
         }
     
