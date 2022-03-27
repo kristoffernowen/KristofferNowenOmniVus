@@ -15,25 +15,28 @@
     @* asp-route-returnUrl="@Model.ReturnUrl"  *@
     <div class="col-12 p-0">
         <input asp-for="FirstName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your firstname" >
-        <span  asp-validation-for="FirstName" class=" ps-2 text-danger"></span>
+        <span  asp-validation-for="FirstName" class="col-8 offset-2 p-3 mt-5  text-danger"></span>
     </div>
     <div class="col-12 p-0">
         <input asp-for="LastName"  type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your lastname" >
-        <span  asp-validation-for="LastName" class=" ps-2 text-danger"></span>
+        <span  asp-validation-for="LastName" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     
     <div class="col-12 p-0">
         <input asp-for="AddressLine" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your streetaddress"/>
+        <span asp-validation-for="AddressLine" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     <div class="col-12 p-0">
-        <input asp-for="PostalCode" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your postalcode"/>
+        <input asp-for="PostalCode" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your postalcode"/><br/>
+        <span asp-validation-for="PostalCode" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     <div class="col-12 p-0">
         <input asp-for="City" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your city"/>
+        <span asp-validation-for="City" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     <div class="col-12 p-0">
         <input asp-for="Email" id="signup-email" type="text" class="col-8 offset-2 p-3 mt-5 " placeholder="Enter your email" >
-        <span id="signup-email-error" asp-validation-for="Email" class=" ps-2 text-danger"></span>
+        <span id="signup-email-error" asp-validation-for="Email" class=" col-8 offset-2 p-3 mt-5 text-danger"></span>
     </div>
     <div class="d-flex justify-content-center col-12">
         <input asp-for="Password" type="password" class="col-md-4 p-3 me-2 mt-5" placeholder="Enter your password" >
@@ -42,10 +45,10 @@
     </div>
     <div class="d-flex justify-content-between px-3 col-8 offset-2 ">
         <div class="col-4 ">
-            <span asp-validation-for="Password" class=" ps-2 text-danger"></span>
+            <span asp-validation-for="Password" class="col-md-4 p-3 ms-2 mt-5 text-danger"></span>
         </div>
         <div class="col-6 ">
-            <span asp-validation-for="ConfirmPassword"  class="text-start text-danger ms-3 ps-3"></span>
+            <span asp-validation-for="ConfirmPassword"  class="col-md-4 p-3 ms-2 mt-5 text-danger"></span>
         </div>
     </div>
             

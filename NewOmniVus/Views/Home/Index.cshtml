@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+
 <partial name="_HeaderPartial"/>
 
 <section id="showcase-section">
@@ -85,20 +87,23 @@
             <p> Does any industry face a more complex audience journey and <br/> marketing sales process than B2B technology?
             </p>
         </div>
-        <form id="book-a-meeting-form" action="" class="row">
+        <form id="book-a-meeting-form"  onsubmit="submitForm(event)" class="row">
             
             <div class="col-12 p-0 d-flex justify-content-between">
                 <div class="input-div">
-                    <input id="book-a-meeting-name" type="text" class="container-fluid p-3 " placeholder="Enter your name" >
+                    <label for="book-a-meeting-name" ></label>
+                    <input id="book-a-meeting-name" type="text" class="container-fluid p-3 " placeholder="Enter your name">
                     <p id="book-a-meeting-name-response" class="text-danger"></p>
                 </div>
                 <div class="input-div">
+                    <label for="book-a-meeting-email"></label>
                     <input id="book-a-meeting-email" type="text" class="container-fluid p-3  " placeholder="Enter your email">
                     <p id="book-a-meeting-email-response" class="text-danger"></p>
                 </div>
             </div>
             
             <div class="col-12 p-0 mt-5">
+                <label for="book-a-meeting-textarea" ></label>
                 <textarea id="book-a-meeting-textarea" class="p-3 m-0 col-12" placeholder="Enter your question and subject here."></textarea>
                 <p id="book-a-meeting-textarea-response" class="text-danger"></p>
             </div>
@@ -114,3 +119,4 @@
 <partial name="_FooterPartial"/>
 
 <script src="js/bookameeting.js"></script>
+

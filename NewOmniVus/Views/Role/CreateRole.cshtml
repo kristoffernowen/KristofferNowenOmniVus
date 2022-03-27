@@ -11,13 +11,13 @@
         <input id="create-roleName" asp-for="RoleName" class="container-fluid" placeholder="name of role"/>
         <p id="create-roleName-response"></p>
     </div>
-    <div>
-        <p>Write email of who you want to give it to</p>
-        <input asp-for="UserEmail" class="container-fluid" placeholder="email of user"/>
-    </div>
+    @* <div> *@
+    @*     <p>Write email of who you want to give it to</p> *@
+    @*     <input asp-for="UserEmail" class="container-fluid" placeholder="email of user"/> *@
+    @* </div> *@
     <div class="d-flex  flex-column">
         <button class="button-omni my-3" type="submit" >Create</button>
-        <button class="button-omni"><a asp-controller="Home" asp-action="Index">Home</a></button>
+        <button class="button-omni"><a asp-controller="Role" asp-action="Index">Home</a></button>
     </div>
 </form>
 

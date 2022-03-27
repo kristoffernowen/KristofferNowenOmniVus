@@ -39,6 +39,9 @@ namespace NewOmniVus.Controllers
                 .Include(a => a.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
+            var userRole = await _appDbContext.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
+            var role = await _appDbContext.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
+
             var imageModel = await _secondDbContext.ProfileImages.FirstOrDefaultAsync(i => i.UserId == id);
 
             if (appUserProfileEntity == null)
@@ -54,11 +57,14 @@ namespace NewOmniVus.Controllers
                 PostalCode = appUserProfileEntity.Address.PostalCode,
                 City = appUserProfileEntity.Address.City,
                 Email = appUserProfileEntity.UserEmail,
-                Role = User.FindFirst("Role").Value,
-                ImageFileName = imageModel.FileName
+                Role = role.Name,
+                
             };
-            
 
+            if (imageModel != null)
+            {
+                displayModel.ImageFileName = imageModel.FileName;
+            }
 
             // if (returnUrl != null)
             //     editModel.ReturnUrl = returnUrl;
@@ -77,79 +83,7 @@ namespace NewOmniVus.Controllers
 
             
         }
-
-
-        //
-        // [HttpPost]
-        // public async Task<IActionResult> Index(EditAppUserProfile profileModel, string returnUrl = null)
-        // {
-        //     var originalProfile =
-        //     
-        //     await _secondDbContext.Profiles.Include(x => x.Address)
-        //         .FirstOrDefaultAsync(x => x.UserEmail == User.Identity.Name);
-        //
-        //     originalProfile.FirstName = profileModel.FirstName;
-        //     originalProfile.LastName = profileModel.LastName;
-        //
-        //     var userAddressId =
-        //         await _secondDbContext.Profiles.FirstOrDefaultAsync(x => x.Id.Equals(User.FindFirst("Id").Value));
-        //     var howManyId = await _secondDbContext.Profiles.Where(a => a.AddressId == userAddressId.AddressId).ToListAsync();
-        //
-        //
-        //     if (howManyId.Count > 1)
-        //     {
-        //         
-        //         var createThisAddress = new AppAddressEntity
-        //         {
-        //             AddressLine = profileModel.AddressLine,
-        //             PostalCode = profileModel.PostalCode,
-        //             City = profileModel.City,
-        //         };
-        //         originalProfile.AddressId = await _addressManager.CreateUserAddressAsync(createThisAddress);
-        //     }
-        //     else if(howManyId.Count <= 1)
-        //     {
-        //         originalProfile.Address.AddressLine = profileModel.AddressLine;
-        //         originalProfile.Address.PostalCode = profileModel.PostalCode;
-        //         originalProfile.Address.City = profileModel.City;
-        //     }
-        //     
-        //    //_secondDbContext.Entry(originalProfile).State = EntityState.Modified;
-        //    
-        //
-        //     if (ModelState.IsValid)  //Här är den Hans körde. självgenererad?
-        //     {
-        //         try
-        //         {
-        //             _secondDbContext.Update(originalProfile);
-        //             await _secondDbContext.SaveChangesAsync();
-        //         }
-        //         catch (DbUpdateConcurrencyException)
-        //         {
-        //             if (!AppUserProfileEntityExists(originalProfile.Id))
-        //             {
-        //                 return NotFound();
-        //             }
-        //             else
-        //             {
-        //                 throw;
-        //             }
-        //         }
-        //         return RedirectToAction("Index", "Home");
-        //     }
-        //
-        //
-        //     //await _secondDbContext.SaveChangesAsync();
-        //
-        //     if (returnUrl != null)
-        //         profileModel.ReturnUrl = returnUrl;
-        //     else
-        //     {
-        //         profileModel.ReturnUrl = "/";
-        //     }
-        //
-        //     return View(profileModel);
-        // }
+        
 
 
        
@@ -164,17 +98,27 @@ namespace NewOmniVus.Controllers
 
             var imageModel = await _secondDbContext.ProfileImages.FirstOrDefaultAsync(i => i.UserId == id);
 
+            var userRole = await _appDbContext.UserRoles.FirstOrDefaultAsync(ur => ur.UserId == id);
+            var role = await _appDbContext.Roles.FirstOrDefaultAsync(r => r.Id == userRole.RoleId);
 
             var editModel = new EditAppUserProfile
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Email = model.UserEmail,
                 AddressLine = model.Address.AddressLine,
                 PostalCode = model.Address.PostalCode,
                 City = model.Address.City,
-                ImageFileName = imageModel.FileName
+                Role = role.Name
 
             };
+
+            if (imageModel != null)
+            {
+                editModel.ImageFileName = imageModel.FileName;
+            }
+
+
 
             if (returnUrl != null)
                 editModel.ReturnUrl = returnUrl;
@@ -293,12 +237,15 @@ namespace NewOmniVus.Controllers
         {
             var appUserProfileEntity = await _secondDbContext.Profiles.FindAsync(id);
             var userIdentity = await _appDbContext.Users.FindAsync(id);
+            var userRole = await _appDbContext.UserRoles.FirstOrDefaultAsync(x=> x.UserId == id);
 
             _secondDbContext.Profiles.Remove(appUserProfileEntity);
             await _secondDbContext.SaveChangesAsync();
 
             _appDbContext.Users.Remove(userIdentity);
             await _appDbContext.SaveChangesAsync();
+
+            _appDbContext.UserRoles.Remove(userRole);
 
             return RedirectToAction("Index", "Profile");
         }

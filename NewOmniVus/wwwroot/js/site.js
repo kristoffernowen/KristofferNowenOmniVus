@@ -4,8 +4,9 @@ const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 
 
 
+
 document.getElementById("contact-name").addEventListener("keyup",
-    function(e) {
+    function (e) {
         if (!nameRegex.test(e.target.value)) {
             document.getElementById("contact-name-response").innerText =
                 "You must enter a valid firstname and lastname, starting with capital letter";
@@ -15,7 +16,7 @@ document.getElementById("contact-name").addEventListener("keyup",
     });
 
 document.getElementById("contact-email").addEventListener("keyup",
-    function(e) {
+    function (e) {
         if (!emailRegex.test(e.target.value)) {
             document.getElementById("contact-email-response").innerText = "You must enter a valid email";
         } else {
@@ -33,7 +34,7 @@ document.getElementById("contact-textarea").addEventListener("keyup", function (
 
 const adminNameRegex = /^[a-zA-Z]{3,20}$/;
 
-document.getElementById("create-roleName").addEventListener("keyup", function(e) {
+document.getElementById("create-roleName").addEventListener("keyup", function (e) {
     if (!adminNameRegex.test(e.target.value)) {
         document.getElementById("create-roleName-response").innerText = "Must be between 3 and 20 letters, capital or small"
     } else {

@@ -7,17 +7,20 @@
 
 
 
-<div class="col-8 offset-2">
-    <div class="d-flex justify-content-around m-3 text-light">
-        <h3>@User.FindFirst("DisplayName").Value </h3>
-        <h3>signed in as a @User.FindFirst("Role").Value </h3>
+<div class="col-8 offset-2 p-0">
+    <div class="d-flex justify-content-between m-3 text-light p-0">
+        <h3>@Model.FirstName @Model.LastName</h3>
+        <h3>@Model.Role</h3>
     </div>
 </div>
 
        
-<div class="col-8 offset-2 mt-5 d-flex justify-content-center">
-    <img src="@("~/profileImages/"+Model.ImageFileName)" asp-append-version="true" height="150" width="150" style="border-radius: 50%" />
-</div>
+@if (Model.ImageFileName != null)
+{
+    <div class="col-8 offset-2 mt-5 d-flex justify-content-center">
+        <img src="@("~/profileImages/"+Model.ImageFileName)" asp-append-version="true" height="150" width="150" style="border-radius: 50%" />
+    </div> 
+}
 <div>
     <p class="col-8 offset-2 p-3 mt-5 p-box"  >Firstname: @Model.FirstName </p>
 </div>

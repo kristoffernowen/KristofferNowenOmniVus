@@ -42,9 +42,9 @@ namespace NewOmniVus.Controllers
         {
             await _roleManager.CreateAsync(new IdentityRole(model.RoleName));
 
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Email == model.UserEmail);
-
-            await _userManager.AddToRoleAsync(user, model.RoleName);
+            // var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Email == model.UserEmail);
+            //
+            // await _userManager.AddToRoleAsync(user, model.RoleName);
 
             return View();
         }
